@@ -50,7 +50,7 @@ This repository contains training files about Node.js for beginners.
 
 ##### 4.1 Intercepter les évènements
 
-### 5. Cas d'utilisation
+### 5. Cas d'utilisation basé sur une architecture MVC
 
 #### 5.1 Méthodes utilitaires
 
@@ -98,5 +98,5 @@ This repository contains training files about Node.js for beginners.
 
   #### 6.2 Envoyer et recevoir un message
 
-### 8. Conclusion
+### 7. Conclusion
 
