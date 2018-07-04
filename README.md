@@ -98,11 +98,5 @@ This repository contains training files about Node.js for beginners.
 
   #### 6.2 Envoyer et recevoir un message
 
-### 7. Déployer une application
-
-  #### 7.1 Grunt - Gulp
-
-  #### 7.2 Automatiser les tâches avec NPM
-
 ### 8. Conclusion
 
