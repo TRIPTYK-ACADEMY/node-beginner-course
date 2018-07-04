@@ -82,7 +82,7 @@ This repository contains training files about Node.js for beginners.
 
 #### 5.5 Gestion des connexions HTTP
 
-  ###### 5.5.1 Créer une requête
+  ##### 5.5.1 Créer une requête
 
   ##### 5.5.2 Construire le serveur
 
