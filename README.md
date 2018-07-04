@@ -48,7 +48,7 @@ This repository contains training files about Node.js for beginners.
 
 ### 4. Gestion des évènements
 
-### 4.1 Intercepter les évènements
+##### 4.1 Intercepter les évènements
 
 ### 5. Cas d'utilisation
 
