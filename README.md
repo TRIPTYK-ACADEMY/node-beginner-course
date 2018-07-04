@@ -24,7 +24,7 @@ This repository contains training files about Node.js for beginners.
 
 #### 2.3 Sortie
 
-#### 2.4 Synchronysme - Asynchronisme 
+#### 2.4 Synchronisme - Asynchronisme 
 
 ### 3. Gestion des modules
 
