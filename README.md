@@ -40,9 +40,9 @@ This repository contains training files about Node.js for beginners.
 
   ##### 3.2.1 Trouver des paquets
 
-  ##### 3.2.2 Installer des paquets locaux
+  ##### 3.2.2 Installer des paquets locaux avec npm | yarn
 
-  ##### 3.2.3 Installer des paquets globaux
+  ##### 3.2.3 Installer des paquets globaux avec npm | yarn
 
   ##### 3.2.4 Le fichier package.json
 
@@ -98,5 +98,29 @@ This repository contains training files about Node.js for beginners.
 
   #### 6.2 Envoyer et recevoir un message
 
-### 7. Conclusion
+### 7. Quelques outils (très) intéressants
+
+#### 7.1 nodemon
+
+#### 7.2 nvm
+
+#### 7.3 pm2 
+
+#### 7.4 Extensions VS Code
+
+##### 7.4.1 DotENV
+
+##### 7.4.2 jsHint
+
+##### 7.4.3 ESLint
+
+##### 7.4.4 TODO Highlight
+
+##### 7.4.5 Path intelliSense
+
+##### 7.4.6 Javascript ES6 code snippets
+
+##### 7.4.7 Git history
+
+### 8. Conclusion
 
