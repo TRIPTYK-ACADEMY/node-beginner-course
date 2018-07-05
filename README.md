@@ -8,23 +8,31 @@ This repository contains training files about Node.js for beginners.
 
 #### 1.1 Qu'est-ce que c'est ?
 
-#### 1.2 Historique
+#### 1.2 Avantages
 
-#### 1.3 Environnement
+#### 1.3 Inconvénients
 
-#### 1.4 Installation
+#### 1.4 Historique
 
-#### 1.5 Fonctionnement
+#### 1.5 Environnement
+
+#### 1.6 Installation sous Linux Ubuntu 16.04
+
+##### 1.6.1 NPM
+
+#### 1.7 Fonctionnement
 
 ### 2. Utilisation en ligne de commande
 
-#### 2.1 Variables globales
+#### 2.1 Un premier script Node.js
 
-#### 2.2 Arguments
+#### 2.2 Variables globales
 
-#### 2.3 Sortie
+#### 2.3 Arguments
 
-#### 2.4 Synchronisme - Asynchronisme 
+#### 2.4 Sortie
+
+#### 2.5 Synchronisme - Asynchronisme 
 
 ### 3. Gestion des modules
 
@@ -32,7 +40,7 @@ This repository contains training files about Node.js for beginners.
 
   ##### 3.1.1 Se renseigner sur les modules natifs
 
-  ##### 3.1.2 Utiliser un module natif
+  ##### 3.1.2 Utiliser un module natif : require()
 
   ##### 3.1.3 Organiser son code avec les exports
 
@@ -102,7 +110,7 @@ This repository contains training files about Node.js for beginners.
 
 #### 7.1 nodemon
 
-#### 7.2 nvm
+#### 7.2 NVM
 
 #### 7.3 pm2 
 
