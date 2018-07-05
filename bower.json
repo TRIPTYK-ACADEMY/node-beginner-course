@@ -1,0 +1,18 @@
+{
+  "name": "training-node-beginners",
+  "description": "Training content for node.js beginner",
+  "main": "index.js",
+  "authors": [
+    "Steve Lebleu"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/TRIPTYK/training-node-beginner",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "docs/assets/vendors",
+    "test",
+    "tests"
+  ]
+}

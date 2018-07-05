@@ -1,0 +1,5 @@
+node_modules/
+docs/assets/css/
+docs/assets/vendors/
+npm-debug.log
+.idea/
