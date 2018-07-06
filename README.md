@@ -68,41 +68,41 @@ This repository contains training files about Node.js for beginners.
 
   #### 6.1 Gestion des connexions HTTP
 
-    ##### 6.1.1 Créer une requête
+  ##### 6.1.1 Créer une requête
 
-    ##### 6.1.2 Construire le serveur
+  ##### 6.1.2 Construire le serveur
 
-    ##### 6.1.3 Servir des fichiers statiques
+  ##### 6.1.3 Servir des fichiers statiques
 
-    ##### 6.1.4 Servir du JSON
+  ##### 6.1.4 Servir du JSON
 
-    ##### 6.1.5 Récupérer les données en POST
+  ##### 6.1.5 Récupérer les données en POST
 
   #### 6.2 Gestion des streams
 
-    ##### 6.2.1 Utiliser un stream de lecture
+  ##### 6.2.1 Utiliser un stream de lecture
 
-    ##### 6.2.2 Ecrire dans un stream
+  ##### 6.2.2 Ecrire dans un stream
 
   #### 6.3 Gestion des fichiers et des répertoires
 
-    ##### 6.3.1 Lister un répertoire
+  ##### 6.3.1 Lister un répertoire
 
-    ##### 6.3.2 Lire un fichier
+  ##### 6.3.2 Lire un fichier
 
-    ##### 6.3.3 Ecrire dans un fichier
+  ##### 6.3.3 Ecrire dans un fichier
 
-    ##### 6.3.4 Créer un répertoire
+  ##### 6.3.4 Créer un répertoire
 
-    ##### 6.3.5 Renommer et supprimer un fichier
+  ##### 6.3.5 Renommer et supprimer un fichier
 
-    ##### 6.3.6 Renommer et supprimer un répertoire
+  ##### 6.3.6 Renommer et supprimer un répertoire
 
   #### 6.4 Gestion des processus
 
-    ##### 6.4.1 Maîtriser les processus enfants
+  ##### 6.4.1 Maîtriser les processus enfants
 
-    ##### 6.4.2 Contrôler les processus enfants avec Spawn
+  ##### 6.4.2 Contrôler les processus enfants avec Spawn
 
   #### 6.5 Gestion des bases de données
 
@@ -116,19 +116,19 @@ This repository contains training files about Node.js for beginners.
 
   #### 7.4 Extensions VS Code
 
-    ##### 7.4.1 Javascript ES6 code snippets
+  ##### 7.4.1 Javascript ES6 code snippets
 
-    ##### 7.4.2 Path intelliSense
+  ##### 7.4.2 Path intelliSense
 
-    ##### 7.4.3 DotENV
+  ##### 7.4.3 DotENV
 
-    ##### 7.4.4 jsHint
+  ##### 7.4.4 jsHint
 
-    ##### 7.4.5 ESLint
+  ##### 7.4.5 ESLint
 
-    ##### 7.4.6 TODO Highlight
+  ##### 7.4.6 TODO Highlight
 
-    ##### 7.4.7 Git history
+  ##### 7.4.7 Git history
 
 ### 8. Conclusion
 
