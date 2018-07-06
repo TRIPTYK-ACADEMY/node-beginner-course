@@ -20,17 +20,19 @@ This repository contains training files about Node.js for beginners.
 
 #### 1.7 Fonctionnement
 
-### 2. Utilisation en ligne de commande
+### 2. Premiers pas
 
-#### 2.1 Un premier script Node.js
+#### 2.1 Hello World
 
-#### 2.2 Variables globales
+#### 2.2 Variables locales
 
-#### 2.3 Arguments
+#### 2.3 Variables globales
 
-#### 2.4 Sortie
+#### 2.4 Arguments
 
-#### 2.5 Synchronisme - Asynchronisme 
+#### 2.5 Utiliser les entrées/sorties
+
+#### 2.6 Gérer le timing 
 
 ### 3. Gestion des modules
 
