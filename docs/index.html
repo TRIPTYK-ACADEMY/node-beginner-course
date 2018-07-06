@@ -34,79 +34,53 @@
         <!-- 1. Introduction -->
 
         <section>
-          <h2>1. Introduction</h2>
-        </section>
 
-        <!-- 1.1 -->
-
-				<section>
-
+          <section>
+            <h2>1. Introduction</h2>
+          </section>
+          
+          <!-- 1.1 -->
           <section>
             <h3>Qu'est-ce que c'est ?</h3>
           </section>
-          
+            
           <section>
             Environnement d'exécution Javascript construit sur le moteur JavaScript V8 de Chrome. 
           </section>
-          
+            
           <section>
             C'est un environnement bas niveau permettant l’exécution de JavaScript côté serveur.
           </section>
 
-        </section>
-
-        <!-- 1.2 -->
-
-				<section>
-
+          <!-- 1.2 -->
           <section>
             <h3>Avantages</h3>
           </section>
           
           <section>
-            Node.js utilise un modèle basé sur l’événementiel et des entrées/sorties non bloquantes, ce qui le rend léger et efficace.
-          </section>
+            <ul>
+              <li>Basé sur l’événementiel et des entrées/sorties non bloquantes, ce qui le rend léger et efficace.</li>
+              <li>Ultra-rapide !</li>
+              <li>Le plus grand écosystème (npm) de bibliothèques open source au monde !</li>
+              <li>Coûts de production très bas par rapport aux technologies concurrentes.</li>
+            </ul>
+           </section>
+         
 
-          <section>
-            C'est ultra-rapide !
-          </section>
-
-          <section>
-            L’écosystème de logiciels de Node.js, npm, est le plus grand écosystème de bibliothèques open source au monde !
-          </section>
-
-          <section>
-            Les coûts de production sont très bas par rapport aux technologies concurrentes.
-          </section>
-
-        </section>
-
-        <!-- 1.3 -->
-
-				<section>
-
+          <!-- 1.3 -->
           <section>
             <h3>Inconvénients</h3>
           </section>
           
           <section>
-            Fragilité du langage Javascript et de la programmation fonctionnelle vs la programmation orientée objet
+            <ul>
+              <li>Fragilité du langage Javascript et de la programmation fonctionnelle vs la programmation orientée objet.</li>
+              <li>Grosse exposition aux hackers.</li>
+              <li>Le bon côtoie le moins bon.</li>
+            </ul>
           </section>
 
-          <section>
-            Grosse exposition aux hackers
-          </section>
-
-          <section>
-            Le bon côtoie le moins bon
-          </section>
-
-        </section>
-
-        <!-- 1.4 -->
-
-				<section>
-
+          <!-- 1.4 -->
           <section>
             <h3>Historique</h3>
           </section>
@@ -120,180 +94,478 @@
             <cite>Wikipédia - https://fr.wikipedia.org/wiki/Node.js</cite>
           </section>
 
-        </section>
-
-        <!-- 1.5 -->
-
-				<section>
-
+           <!-- 1.5 -->
           <section>
             <h3>Environnement</h3>
           </section>
           
           <section>
-            TODO
+            <ul>
+              <li>OS Linux Ubuntu 16.04</li>
+              <li>Visual Studio Code</li>
+              <li>Terminal + ZSH</li>
+            </ul>
           </section>
 
-        </section>
-
-        <!-- 1.6 -->
-
-				<section>
-
-            <section>
-              <h3>Installation sous Linux Ubuntu 16.04</h3>
-            </section>
-            
-            <section>
-              <pre class="bash"><code data-trim data-noescape>
-                  $ sudo apt-get update
-                  $ sudo apt-get install nodejs
-                  $ nodejs -v
-                </code></pre>
-            </section>
-
+          <!-- 1.6 -->
+          <section>
+            <h3>Installation sous Linux Ubuntu 16.04</h3>
+          </section>
+          
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ sudo apt-get update
+              $ sudo apt-get install nodejs
+              $ nodejs -v
+            </code></pre>
           </section>
 
-          <!-- 2. Utilisation en ligne de commande -->
+          <!-- 1.7 -->
+          <section>
+            <h3>Fonctionnement</h3>
+          </section>
+          
+          <section>
+            <p>Philosophie différente des autres types de serveurs (Apache, Nginx, IIS, ...)</p>
+          </section>
 
           <section>
-            <h2>2. Utilisation en ligne de commande</h2>
+            <p>Un seul et unique thread</p>
+          </section>
+
+          <section>
+            <p>Et pourtant, c'est ultra-rapide ...</p>
+          </section>
+
+          <section>
+            <p>Comment est-ce possible ?</p> 
+          </section>
+
+          <section>
+            <p>Grâce à la gestion des EVENEMENTS</p>
+          </section>
+
+          <section>
+            <img src="img/node.js-server.png" alt="" />
+          </section>
+
+          <section>
+            <p>Conséquences</p>
+            <ul>
+              <li>C'est rapide</li>
+              <li>Il n'est pas possible d'écrire du code procédural</li>
+              <li>Le but sera donc d'écrire des traitements les plus courts possibles, afin de ne pas bloquer le thread principal</li>
+            </ul>
+          </section>
+
+          <section>
+            <p>Les programmes node.js seront écrits en JavaScript, et exécutés via la commande node</p>
+            <pre class="bash"><code data-trim data-noescape>
+                $ node app.js
+              </code></pre>
+          </section>
+        </section>
+        
+         <!-- 2. Utilisation en ligne de commande -->
+
+        <section>
+
+          <section>
+            <h2>2. Premiers pas</h2>
           </section>
 
           <!-- 2.1 -->
 
           <section>
-              <section>
-                <h3>Un premier script node.js</h3>
-                <ul>
-                  <li>Créer un répertoire Exo-01 à la racine du cours.</li>
-                  <li>Créer un fichier javascript qui va contenir le code à exécuter.</li>
-                  <li>Exécuter ce fichier et afficher un bel "Hello Technocité" dans le terminal.</li>
-                  <li>Level up : utiliser une chaîne de caractères "Hello World" qui, à l'affichage, sortira en "Hello Technocité".</li>
-                  <li>Level up up : afficher une chaîne de caractères "Hello World" pendant 2s, puis afficher "Sorry, the good string would be displayed in 3 seconds ...", et enfin afficher "Hello Technocité"</li>
-                </ul>
-              </section>
-              <section>
-                  <pre class="javascript"><code data-trim data-noescape>
-                      console.log('Hello World !');
-                    </code></pre>
-              </section>
-              <section>
-                  <pre class="javascript"><code data-trim data-noescape>
-                      console.log('Hello World !'.replace('World', 'Technocité'));
-                    </code></pre>
-              </section>
-              <section>
-                  <pre class="javascript"><code data-trim data-noescape>
-                    console.log('Hello World !');
-                    setTimeout(function() {
-                      console.log('Sorry, the good string would be displayed in 3 seconds ...');
-                    }, 2000);
-                    setTimeout(function() {
-                      console.log('Hello Technocité');
-                    }, 5000);
-                    </code></pre>
-              </section>
+            <h3>Hello World</h3>
+          </section>
+
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ cd /var/www/
+              $ mkdir node-beginners && cd node-beginners 
+              $ mkdir Exo-01 && cd Exo-01
+              $ touch index.js 
+              $ code index.js
+            </code></pre>
+            <pre class="javascript"><code data-trim data-noescape>
+              console.log('Hello World !');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js
+            </code></pre>
           </section>
           
-          <!-- 3. Gestion des modules -->
+          <!--
+          <section>
+            <h3>Exercices</h3>
+          </section>
+
+          <section>
+            <ul>
+              <li>Level up : utiliser une chaîne de caractères "Hello World" qui, à l'affichage, sortira en "Hello Technocité".</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ cd /var/www/node-beginners/
+              $ mkdir Exo-02 && cd Exo-02
+              $ touch index.js 
+              $ code index.js
+            </code></pre>
+            <pre class="javascript"><code data-trim data-noescape>
+              console.log('Hello World !'.replace('World', 'Technocité'));
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js
+            </code></pre>
+          </section>
+         
+          <section>
+            <ul>
+              <li>Level up up : afficher une chaîne de caractères "Hello World" pendant 2s, puis afficher "Sorry, the good string would be displayed in 3 seconds ...", et enfin afficher "Hello Technocité"</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ cd /var/www/node-beginners/
+              $ mkdir Exo-03 && cd Exo-03
+              $ touch index.js 
+              $ code index.js
+            </code></pre>
+            <pre class="javascript"><code data-trim data-noescape>
+              console.log('Hello World !');
+              setTimeout(function() {
+                console.log('Sorry, the good string would be displayed in 3 seconds ...');
+              }, 2000);
+              setTimeout(function() {
+                console.log('Hello Technocité');
+              }, 5000);
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js
+            </code></pre>
+          </section>
+          -->
+
+          <!-- 2.2 -->
+          <section>
+            <h3>Variables locales</h3>
+          </section>
+          <section>
+            <ul>
+              <li>Variables scopées</li>
+              <li>Scope limité au module (fichier)</li>
+            </ul>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              let myString = 'My String';
+              console.log(myString); // My String
+            </code></pre>
+          </section>
+
+          <!-- 2.3 -->
+          <section>
+            <h3>Variables globales</h3>
+          </section>
+          <section>
+              <ul>
+                <li>Objet global embarque des objets natifs utiles</li>
+                <li>Scope étendu au contexte d'exécution</li>
+              </ul>
+            </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              console.log(global);
+            </code></pre>
+          </section>
+          <section>
+            <p>Possible d'hydrater l'objet global avec des variables personnalisées</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              global.myVariable = 'Toto';
+              global.myFunction = function(name) { 
+                if(!name) return false; 
+                console.log(`Hello ${name}`); 
+              };
+              console.log(global);
+              console.log(global.myVariable);
+              global.myFunction('Steve');
+            </code></pre>
+          </section>
+          <section>
+            <p>A noter : il n'existe pas d'objet window dans l'environnement node</p>
+          </section>
+
+          <!-- 2.4 -->
+          <section>
+            <h3>Arguments</h3>
+          </section>
+          <section>
+            <p>Il est possible de récupérer les arguments qui sont passés au script lors de son démarrage.</p>
+          </section>
+          <section>
+            <p>process.argv</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              function collectName() {
+                if(typeof(process.argv(['name']) === 'undefined')) 
+                  return 'Pas de nom trouvé';
+                else 
+                  return `Hello ${process.argv['name']}`;
+              }
+              const output = collectName();
+              console.log(output);
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js --name Steve // Hello Steve
+              $ node index.js --message Hello // Pas de nom trouvé
+            </code></pre>
+          </section>
+
+          <!-- 2.5 -->
+          <section>
+            <h3>Utiliser les entrées/sorties</h3>
+          </section>
+          <section>
+            <p>Il est possible de manipuler les entrées/sorties du terminal.</p>
+          </section>
+          <section>
+            <p>process.stdin / process.stdout</p>
+          </section>
+  
+          <!-- 2.6 -->
+          <section>
+            <h3>Gérer le timing</h3>
+          </section>
+          <section>
+            TODO
+          </section>
+        </section>
+
+        <!-- 3. Gestion des modules -->
+
+        <section>
 
           <section>
             <h2>3. Gestion des modules</h2>
           </section>
-
+  
           <!-- 3.1 -->
-          
           <section>
-            <section>
               <h3>Les modules natifs</h3> 
-            </section>
-            <section>
-              <ul>
-                <li>Clairement plus orientés bas niveau</li>
-                <li>Ils font partie du coeur node.js, et sont accesibles globalement</li>
-              </ul>
-            </section>
-            <section>
-              <p>RTFM</p>
-            </section>
-            <section>
-              <p>
-                <a href="https://nodejs.org/api/">https://nodejs.org/api/</a>
-              </p>
-            </section>
-            <section>
-              <p>La caverne d'Ali Baba du développeur</p>
-            </section>
-            <section>
-                <p>Une instruction javascript pour les utiliser</p>
-              </section>
-            <section>
-                <pre class="javascript"><code data-trim data-noescape>
-                    require()
-                </code></pre>
-            </section>
-            <section>
-                <p>Exercice</p>
-            </section>
-            <section>
-              <p>Nous souhaitons pouvoir faire des vérifications quant au type des variables que nous utilisons dans un script.</p>
-            </section>
-            <section>
-                <p class="fragment" data-fragment-index="1">Diantre.</p> 
-                <p class="fragment" data-fragment-index="2">Fichtre.</p> 
-                <p class="fragment" data-fragment-index="3">Enfer et damnation.</p>
-                <p class="fragment" data-fragment-index="4">Comment faire ?</p>  
-            </section>
-            <section>
-                <p>Ah, ça alors, quel hasard !</p>
-                <p>
-                  <a href="https://nodejs.org/api/util.html#util_util_types">
-                    https://nodejs.org/api/util.html#util_util_types
-                  </a>
-                </p>
-            </section>
-            <section>
-              <pre class="javascript"><code data-trim data-noescape>
-                  const Util = require('util');
-                  </code></pre>
-            </section>
-            <section>
-                <pre class="javascript"><code data-trim data-noescape>
-                    let stringToTest = 'Technocité';
-                    console.log(Util.types.isStringObject(stringToTest)); // false
-                    </code></pre>
-            </section>
-            <section>
-                <pre class="javascript"><code data-trim data-noescape>
-                    let stringToTest = new String('Technocité');
-                    console.log(Util.types.isStringObject(stringToTest)); // true
-                    </code></pre>
-            </section>
           </section>
-          
+          <section>
+            <ul>
+              <li>Clairement plus orientés bas niveau</li>
+              <li>Font partie du coeur node.js</li>
+              <li>Sont accessibles globalement</li>
+            </ul>
+          </section>
+          <section>
+            <p>RTFM</p>
+            <p>
+              <a href="https://nodejs.org/api/">https://nodejs.org/api/</a>
+            </p>
+            <p>La caverne d'Ali Baba du développeur node.js</p>
+          </section>
+          <section>
+            <p>Une instruction javascript pour les utiliser :</p>
+            <pre class="javascript"><code data-trim data-noescape>
+                require()
+            </code></pre>
+          </section>
+          <section>
+            <p>Exercice</p>
+          </section>
+          <section>
+            <p>Nous souhaitons pouvoir faire des vérifications quant au type des variables que nous utilisons dans un script.</p>
+          </section>
+          <section>
+            <p class="fragment" data-fragment-index="1">Diantre.</p> 
+            <p class="fragment" data-fragment-index="2">Fichtre.</p> 
+            <p class="fragment" data-fragment-index="3">Enfer et damnation.</p>
+            <p class="fragment" data-fragment-index="4">Comment faire ?</p>  
+          </section>
+          <section>
+            <p>Ah, ça alors, quel hasard !</p>
+            <p>
+              <a href="https://nodejs.org/api/util.html#util_util_types">
+                https://nodejs.org/api/util.html#util_util_types
+              </a>
+            </p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Util = require('util');
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              let stringToTest = 'Technocité';
+              console.log(Util.types.isStringObject(stringToTest)); // false
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              let stringToTest = new String('Technocité');
+              console.log(Util.types.isStringObject(stringToTest)); // true
+            </code></pre>
+          </section>
+
           <!-- 3.2 -->
+          <section>
+            <h3>Les paquets node.js</h3> 
+          </section>
+          <section>
+            <ul>
+              <li>Bas niveau et features</li>
+              <li>Pas accessibles globalement et doivent être installés</li>
+              <li>Quasiment tout ce que vous voulez a déjà été fait</li>
+              <li>Chargés via le Node Package Manager (npm)</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Node Package Manager</h4>
+            <p>Fondamental dans l'environnement node.js</p>
+          </section>
+          <section>
+            <p>Installation</p>
+            <pre class="bash"><code data-trim data-noescape>
+              $ sudo apt-get install npm
+              $ npm -v
+              $ npm -h
+            </code></pre>
+          </section>
+          <section>
+            <p>Installer un paquet localement avec npm</p>
+            <pre class="bash"><code data-trim data-noescape>
+              $ npm install mon-bo-paquet --save
+            </code></pre>
+          </section>
+          <section>
+            <p>Installer un paquet globalement avec npm</p>
+            <pre class="bash"><code data-trim data-noescape>
+              $ npm install mon-bo-paquet-global -g
+            </code></pre>
+          </section>
+          <section>
+            <p>Comme toujours, RTFM</p>
+            <p>
+              <a href="https://docs.npmjs.com/">
+                https://docs.npmjs.com/
+              </a>
+            </p>
+          </section>
+          <section>
+            <h4>Le fichier package.json</h4>
+          </section>
+          <section>
+            <ul>
+              <li>Crucial pour le versionnement et la maintenabilité</li>
+              <li>Contient toutes les dépendances du projet</li>
+              <li>Généré dès l'initialisation</li>
+              <li>Mis à jour en permanence</li>
+            </ul>
+          </section>
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ mkdir Exo-03 && cd Exo-03 
+              $ npm init
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              {
+                "name": "package-json-sample",
+                "version": "1.0.0",
+                "description": "Basis package.json sample",
+                "main": "app.js",
+                "scripts": {
+                  "test": "echo \"Error: no test specified\" && exit 1"
+                },
+                "author": "Steve Lebleu",
+                "keywords": "package, package.json, repository",
+                "license": "MIT"
+              }
+            </code></pre>
+          </section>
+          <section>
+            <p>Le fichier peut être édité manuellement, et sera mis à jour lorsque :</p>
+            <ul>
+              <li>Un package sera installé en tant que dépendance directe : --save</li>
+              <li>Un package sera installé en tant que dépendance de développement : --save-dev</li>
+            </ul>
+          </section>
+          <section>
+            <p>Exercices</p>
+          </section>
+          <section>
+            <p>
+              Utiliser le module colors pour afficher des messages en couleur dans la console. Il faut pouvoir utiliser ce module 
+              dans tous les projets node.js.
+            </p>
+          </section>
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ mkdir Exo-03 && cd Exo-03 
+              $ touch app.js
+              $ npm install colors -g
+              $ code app.js
+            </code></pre>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Colors = require('colors');
+              try {
+                let test = 'String to test';
+                test.relace('test', 'break');
+              }
+              catch(e) { console.log(e.message.red); };
+            </code></pre>
+          </section>
+          <section>
+            <p>
+              Utiliser le module keyword-extractor pour recenser les occurrences de mots dans un contenu textuel.
+            </p>
+          </section>
+          <section>
+            <pre class="bash"><code data-trim data-noescape>
+              $ mkdir Exo-04 && cd Exo-04 
+              $ touch app.js
+              $ npm install keyword-extractor --save
+              $ code app.js
+            </code></pre>
+            <pre class="javascript"><code data-trim data-noescape>
+              const KeywordsExtractor = require('keyword-extractor');
+              try {
+                const text = 'This is an string wich contains some words. Each word build the string, and the string is nothing without words.';
+                const extract = KeywordsExtractor.extract(text, {
+                  language: 'english',
+                  remove_duplicates: false
+                });
+                console.log(extract);
+              }
+              catch(e) { e.message.red };
+            </code></pre>
+          </section>
+
+          <!-- 3.3 -->
 
           <section>
-            <section>
-                <h3>Les paquets node.js</h3> 
-            </section>
-            <section>
-              <ul>
-                <li>Bas niveau et features</li>
-                <li>Ils ne sont accesibles globalement et doivent être installés</li>
-              </ul>
-            </section>
-            <section>
-                <h4>npm</h4>
-                <p>Gérer les paquets node.js</p>
-                <pre class="bash"><code data-trim data-noescape>
-                    $ sudo apt-get install npm
-                    $ npm -v
-                  </code></pre>
-              </section>
+            <h3>Modules custom</h3>
           </section>
 
+          <section>
+            <p>Parce que tout n'existe pas tout fait</p>
+          </section>
+        </section>
+          
+          
+         
           <!--
           <section>
               <h3>nvm</h3>
