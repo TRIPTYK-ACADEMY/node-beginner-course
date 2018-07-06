@@ -64,7 +64,7 @@ This repository contains training files about Node.js for beginners.
 
 ### 5. Méthodes utilitaires
 
-### 6. Node.js as back-end engine
+### 6. Tâches serveur
 
   #### 6.1 Gestion des connexions HTTP
 
