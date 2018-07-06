@@ -18,8 +18,6 @@ This repository contains training files about Node.js for beginners.
 
 #### 1.6 Installation sous Linux Ubuntu 16.04
 
-##### 1.6.1 NPM
-
 #### 1.7 Fonctionnement
 
 ### 2. Utilisation en ligne de commande
@@ -48,15 +46,19 @@ This repository contains training files about Node.js for beginners.
 
   ##### 3.2.1 Trouver des paquets
 
-  ##### 3.2.2 Installer des paquets locaux avec npm | yarn
+  ##### 3.2.2 Installer des paquets locaux avec npm
 
-  ##### 3.2.3 Installer des paquets globaux avec npm | yarn
+  ##### 3.2.3 Installer des paquets globaux avec npm
 
   ##### 3.2.4 Le fichier package.json
 
+#### 3.3 Modules custom
+
 ### 4. Gestion des évènements
 
-##### 4.1 Intercepter les évènements
+#### 4.1 Intercepter les évènements
+
+#### 4.2. Intégrer les websockets avec socket.io
 
 ### 5. Cas d'utilisation basé sur une architecture MVC
 
@@ -100,35 +102,29 @@ This repository contains training files about Node.js for beginners.
 
   ##### 5.5.5 Récupérer les données en POST
 
-### 6. Intégrer les websockets avec socket.io
+### 6. Quelques outils (très) intéressants
 
-  #### 6.1 Mettre en place un socket
+#### 6.1 nodemon
 
-  #### 6.2 Envoyer et recevoir un message
+#### 6.2 NVM
 
-### 7. Quelques outils (très) intéressants
+#### 6.3 pm2 
 
-#### 7.1 nodemon
+#### 6.4 Extensions VS Code
 
-#### 7.2 NVM
+##### 6.4.1 DotENV
 
-#### 7.3 pm2 
+##### 6.4.2 jsHint
 
-#### 7.4 Extensions VS Code
+##### 6.4.3 ESLint
 
-##### 7.4.1 DotENV
+##### 6.4.4 TODO Highlight
 
-##### 7.4.2 jsHint
+##### 6.4.5 Path intelliSense
 
-##### 7.4.3 ESLint
+##### 6.4.6 Javascript ES6 code snippets
 
-##### 7.4.4 TODO Highlight
+##### 6.4.7 Git history
 
-##### 7.4.5 Path intelliSense
-
-##### 7.4.6 Javascript ES6 code snippets
-
-##### 7.4.7 Git history
-
-### 8. Conclusion
+### 7. Conclusion
 
