@@ -42,8 +42,6 @@ This repository contains training files about Node.js for beginners.
 
   ##### 3.1.2 Utiliser un module natif : require()
 
-  ##### 3.1.3 Organiser son code avec les exports
-
 #### 3.2 Paquets Node
 
   ##### 3.2.1 Trouver des paquets
@@ -55,6 +53,8 @@ This repository contains training files about Node.js for beginners.
   ##### 3.2.4 Le fichier package.json
 
 #### 3.3 Modules personnalisés
+
+  ##### 3.3.1 Organiser son code avec les exports
 
 ### 4. Gestion des évènements
 
