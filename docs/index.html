@@ -771,7 +771,546 @@
 
         </section>
           
+        <!-- 4 -->
+        <section>
+          <section>
+              <h2>4. Gestion des événements</h2>
+          </section>
+          <section>
+            <p>JavaScript intègre nativement la gestion des évènements</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const element = document.getElementById('my-element');
+              element.addEventListener('click', function(e) {
+                alert('Hello alert');
+              }, true);
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const element = document.getElementById('my-element');
+              const myCustomEvent = new CustomEvent('my-event', { detail : 'Example of an event'});
+              element.addEventListener('my-event', function(e) {
+                alert(e.detail);
+              }, true);
+              element.dispatchEvent(myCustomEvent);
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const $element = $('#my-element');
+              $element.on('my-event', function(e) {
+                alert('Hello alert');
+              }, true);
+              $element.trigger('my-event');
+            </code></pre>
+          </section>
+          <section>
+            <p>Dans Node.js, il y a .js</p>
+          </section>
+         
+          <section>
+            <p>Ecouter un événement</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const listen = function() {
+                process.stdout.write('We listen the terminal\n');
+                process.stdin.on('data', function(data) {
+                  console.log(data);
+                });
+              };
+              listen();
+            </code></pre>
+          </section>
+          <section>
+            <p>Manipuler les événements</p>
+            <a href="https://nodejs.org/api/events.html" target="_blank">
+                https://nodejs.org/api/events.html
+            </a>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Events = require('events');
+              const game = new Events.EventEmitter();
+              game.on('success', function(message){
+                  console.log(message);
+              });
+              game.emit('success', 'You win');
+            </code></pre>
+          </section>
+          <section>
+            <h3>Exercices</h3>
+          </section>
+          <section>
+            <p>
+                Utiliser le module natif <a href="https://nodejs.org/api/readline.html" target="_blank">Readline</a>, et adapter le AskManager 
+                de la manière suivante :
+            </p>
+            <ul>
+              <li>Les questions doivent être affichées via la fonction question() du module</li>
+              <li>Le message d'au revoir doit être affiché après interception de l'event SIGINT</li>
+            </ul>
+          </section>
+          <section>
+            <p>Adapter le AskManager en implémentant vos propres écouteurs/déclencheurs d'événements.</p>
+            <ul>
+              <li>Ecouter les événements 'end' et 'error'</li>
+              <li>Déclencher 'end' lorsque toutes les questions ont été posées</li>
+              <li>Déclencher 'error' lorsqu'une erreur est rencontrée</li>
+              <li>Lorsque 'end' est déclenché, afficher un message variable, et quitter le process</li>
+              <li>Lorsque 'error' est déclenché, afficher une erreur, et déclencher l'événement 'end'</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- 5 -->
+        <section>
+          <section>
+              <h2>5. Gestion des processus</h2>
+          </section>
+          <section>
+            <p>Node permet d'éxécuter des processus système natifs</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const exec = require('child_process').exec;
+              exec('node -v', function( error, stdout) {
+                if(error) { throw error };
+                console.log('Command executed');
+                console.log(stdout);
+              });
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+          <section>
+            <h3>Exercice</h3>
+          </section>
+          <section>
+            <p>Lister les fichiers d'un répertoire avec la commande ls -l.</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+                const exec = require('child_process').exec;
+                exec('ls -l', function( error, stdout) {
+                  if(error) { throw error };
+                  console.log('Command executed');
+                  console.log(stdout);
+                });
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+        </section>
+
+        
+
+        <!-- 6 -->
+        <section>
+
+          <section>
+              <h2>6. Gestion des fichiers</h2>
+          </section>
+
+          <section>
+              <h2>Lister un répertoire</h2>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+  
+                // Synchrone
+  
+                console.log('--- Synchronous native mode');
+  
+                const list = fs.readdirSync('./');
+                console.log(list);
+                console.log('Directory read synchronously');
+  
+                // Asynchrone
+  
+                console.log('--- Asynchronous native mode');
+  
+                fs.readdir('./', (error, files) => {
+                  console.log(files);
+                });
+  
+                console.log('Directory read asynchronously');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
+              <h2>Lire un fichier</h2>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+
+                // Synchrone
+
+                console.log('--- Synchronous native mode');
+
+                let content = fs.readFileSync('./public/contacts-triptyk.txt', 'UTF-8');
+
+                console.log(content);
+
+                // Asynchrone
+
+                console.log('--- Asynchronous native mode');
+
+                fs.readFile('./public/contacts-triptyk.txt', (error, file) => {
+                  console.log(file);
+                });
+
+                console.log('Read');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
           
+          <section>
+            <h2>Ecrire dans un fichier</h2>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+
+              const names = ['Pierre', 'Paul', 'Jacques'];
+              let output = '';
+              
+              names.forEach( (name) => {
+                output += `${name}\n`;
+              });
+              
+              fs.writeFile('./public/contacts.txt', output, (error, file) => {
+                console.log('File created');
+              });
+              
+              let appended = 'Appended content';
+
+              fs.appendFile('./public/contacts.txt', output, (error, file) => {
+                console.log('File content modified');
+              });
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Créer un répertoire</h2>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+
+              if(fs.existsSync('public')) { // Sync
+                fs.mkdir('public', (error) => {
+                  if(error) throw error;
+                  console.log('Directory created');
+                });
+              }
+              else {
+                console.log('Directory public cannot be created : a directory with the same name already exists');
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Renommer/déplacer et supprimer un fichier</h2>
+          </section>
+
+          <section>
+            <h3>Renommer un fichier</h3>
+          </section>
+
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              
+              if(fs.existsSync('public/named-file.txt')) {
+                fs.renameSync('public/named-file.txt', 'public/renamed-file.txt');
+              }
+              else {
+                console.log('File public/named-file not found');
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node rename.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Déplacer un fichier</h3>
+          </section>
+
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              
+              if(fs.existsSync('./public/renamed-file.txt')) {
+                fs.renameSync('./public/renamed-file.txt', './');
+              }
+              else {
+                console.log('File ./public/renamed-file not found');
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node move.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Supprimer un fichier</h3>
+          </section>
+
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+
+              try {
+                fs.unlinkSync('./renamed-file.txt');
+              }
+              catch(e) {
+                console.log(e.message);
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node delete.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Renommer/déplacer et supprimer un répertoire</h2>
+          </section>
+
+          <section>
+            <h3>Renommer un répertoire</h3>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              if(fs.existsSync('./public/to-delete')) {
+                fs.renameSync('./public/to-delete', './public/renamed-directory');
+              }
+              else {
+                console.log('Directory ./public/to-delete not found');
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node rename.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Déplacer un répertoire</h3>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              if(fs.existsSync('./public/renamed-directory')) {
+                fs.renameSync('./public/renamed-directory', './');
+              }
+              else {
+                console.log('Directory ./public/renamed-directory not found');
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node move.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Supprimer un répertoire</h3>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+
+                try {
+                  fs.rmdirSync('./renamed-directory');
+                }
+                catch(e) {
+                  console.log(e.message);
+                }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node delete.js 
+            </code></pre>
+          </section>
+
+
+          <section>
+            <h3>Exercices</h3>
+          </section>
+
+          <section>
+            <p>Lister et lire les fichiers d'un répertoire</p>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              try {
+                fs.readdir('./public', (error, files) => {
+                  if(error) throw error;
+                  files.forEach( (path) => {
+                    console.log(`We read the file ./public/${path}`);
+                    console.log(fs.statSync(`./public/${path}`));
+                    fs.readFile(`./public/${path}`, 'UTF-8', (err, file) => {
+                      if(err) throw err;
+                      console.log(file);
+                    });
+                  });
+                });
+              }
+              catch(e) {
+                console.log(e.message);
+              }
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <p>
+              Considérant le répertoire de l'exercice qui contient des répertoires, qui contiennent parfois des fichiers, eux-mêmes contenant parfois du texte.
+              Vous devez effacer du disque les répertoires vides et les fichiers vides. Vous devez utiliser une fonction récursive pour parser les répertoires, et 
+              vous devez bien évidemment préserver le fichier index.js.
+            </p>
+            <p>Level up : logger les entrées supprimées dans un fichier texte placé dans ./logs/{timestamp.txt}</p>
+          </section>
+
+        </section>
+
+        <!-- 7 -->
+        <section>
+          <section>
+              <h2>7. Gestion des streams</h2>
+          </section>
+          <section>
+            <p>Un stream est un flux de données séquencé, éventuellement fragmenté en paquets.</p>
+            <cite>
+              <a href="https://fr.wikipedia.org/wiki/Stream">https://fr.wikipedia.org/wiki/Stream</a>
+            </cite>
+          </section>
+          <section>
+            <h3>Lecture</h3>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+
+              let stream = fs.createReadStream('public/lorem.txt', 'UTF-8');
+              
+              stream.once('data', () => {
+                console.log('Start stream reading');
+              });
+              
+              stream.on('data', (chunk) => {
+                process.stdout.write(`chunck : ${chunk.length}`);
+              });
+              
+              stream.on('end', () => {
+                console.log('End stream reading');
+              });
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+          <!--
+          <section>
+            <h3>Ecriture</h3>
+          </section>
+          -->
+        </section>
+
+        <!-- 8 -->
+        <section>
+          
+          <section>
+              <h2>8. Gestion serveur HTTP</h2>
+          </section>
+          
+          <section>
+            <h3>Connexions HTTP(S)</h3>
+          </section>
+          <section>
+            <p></p>
+            <a href="https://nodejs.org/api/http.html" target="_blank">HTTP</a> 
+            -
+            <a href="https://nodejs.org/api/https.html" target="_blank">HTTPS</a>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Http = require('http');
+              const options = {
+                hostname : 'technocite.be',
+                path: '/index.php/fr/component/detailsform/?form=1192',
+                port : 443,
+                method: 'GET'
+              };
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+          </section>
+          <section>
+            <h3>Créer une requête HTTP</h3>
+          </section>
+
+          <section>
+            <h3>Construire le serveur</h3>
+          </section>
+
+          <section>
+            <h3>Servir des fichiers statiques</h3>
+          </section>
+
+          <section>
+            <h3>Servir du JSON</h3>
+          </section>
+
+          <section>
+            <h3>Récupérer des données en POST</h3>
+          </section>
+
+        </section>
+
+        <!-- 6 -->
+        <section>
+
+          <section>
+            <h2>6. Outils intéressants</h2>
+          </section>
+          <section>
+            <h3>NVM</h3>
+          </section>
+          <section>
+            <h3>Nodemon</h3>
+          </section>
+          <section>
+            <h3>PM2</h3>
+          </section>
+
+        </section>
+
+         <!-- 7 -->
+         <section>
+          <h2>7. Conclusion</h2>
+        </section>
          
           <!--
           <section>
