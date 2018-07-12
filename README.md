@@ -58,77 +58,76 @@ This repository contains training files about Node.js for beginners.
 
 ### 4. Gestion des évènements
 
-  #### 4.1 Intercepter les évènements
+### 5. Gestion des processus
 
-  #### 4.2. Intégrer les websockets avec socket.io
+### 6. Gestion des fichiers et des répertoires
 
-### 5. Méthodes utilitaires
+  ##### 6.1. Lister un répertoire
 
-### 6. Tâches serveur
+  ##### 6.2. Lire un fichier
 
-  #### 6.1 Gestion des connexions HTTP
+  ##### 6.3. Ecrire dans un fichier
 
-  ##### 6.1.1 Créer une requête
+  ##### 6.4. Créer un répertoire
 
-  ##### 6.1.2 Construire le serveur
+  ##### 6.5. Renommer et supprimer un fichier
 
-  ##### 6.1.3 Servir des fichiers statiques
+  ##### 6.6. Renommer et supprimer un répertoire
 
-  ##### 6.1.4 Servir du JSON
+### 7. Gestion des streams
 
-  ##### 6.1.5 Récupérer les données en POST
+  #### 7.1 Utiliser un stream de lecture
 
-  #### 6.2 Gestion des streams
+  #### 7.2 Ecrire dans un stream
 
-  ##### 6.2.1 Utiliser un stream de lecture
+### 8. Gestion d'un serveur HTTP
 
-  ##### 6.2.2 Ecrire dans un stream
+  #### 8.1 Gestion des connexions HTTP(S)
 
-  #### 6.3 Gestion des fichiers et des répertoires
+  #### 8.2 Créer une requête
 
-  ##### 6.3.1 Lister un répertoire
+  #### 8.3 Construire le serveur
 
-  ##### 6.3.2 Lire un fichier
+  #### 8.4 Servir des fichiers statiques
 
-  ##### 6.3.3 Ecrire dans un fichier
+  #### 8.5 Servir du JSON
 
-  ##### 6.3.4 Créer un répertoire
+  #### 8.6 Récupérer les données en POST
 
-  ##### 6.3.5 Renommer et supprimer un fichier
 
-  ##### 6.3.6 Renommer et supprimer un répertoire
 
-  #### 6.4 Gestion des processus
 
-  ##### 6.4.1 Maîtriser les processus enfants
 
-  ##### 6.4.2 Contrôler les processus enfants avec Spawn
 
-  #### 6.5 Gestion des bases de données
 
-### 7. Quelques outils (très) intéressants
 
-  #### 7.1 nodemon
 
-  #### 7.2 NVM
 
-  #### 7.3 pm2 
 
-  #### 7.4 Extensions VS Code
 
-  ##### 7.4.1 Javascript ES6 code snippets
+### 9. Quelques outils (très) intéressants
 
-  ##### 7.4.2 Path intelliSense
+  #### 9.1 nodemon
 
-  ##### 7.4.3 DotENV
+  #### 9.2 NVM
 
-  ##### 7.4.4 jsHint
+  #### 9.3 pm2 
 
-  ##### 7.4.5 ESLint
+  #### 9.4 Extensions VS Code
 
-  ##### 7.4.6 TODO Highlight
+  ##### 9.4.1 Javascript ES6 code snippets
 
-  ##### 7.4.7 Git history
+  ##### 9.4.2 Path intelliSense
 
-### 8. Conclusion
+  ##### 9.4.3 DotENV
+
+  ##### 9.4.4 jsHint
+
+  ##### 9.4.5 ESLint
+
+  ##### 9.4.6 TODO Highlight
+
+  ##### 9.4.7 Git history
+
+### 10. Conclusion
 
