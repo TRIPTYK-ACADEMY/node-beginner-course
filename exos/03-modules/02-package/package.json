@@ -1,0 +1,11 @@
+{
+  "name": "package-sample",
+  "version": "1.0.0",
+  "description": "Simple example of package.json",
+  "main": "index.js",
+  "author": "Steve Lebleu",
+  "license": "MIT",
+  "dependencies": {
+    "keyword-extractor": "^0.0.15"
+  }
+}

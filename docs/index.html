@@ -12,6 +12,12 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+    <style type="text/css">
+      .link-source {
+        font-size: 0.9rem !important;
+      }
+    </style>
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -66,7 +72,6 @@
             </ul>
            </section>
          
-
           <!-- 1.3 -->
           <section>
             <h3>Inconvénients</h3>
@@ -187,13 +192,7 @@
           </section>
 
           <section>
-            <pre class="bash"><code data-trim data-noescape>
-              $ cd /var/www/
-              $ mkdir node-beginners && cd node-beginners 
-              $ mkdir Exo-01 && cd Exo-01
-              $ touch index.js 
-              $ code index.js
-            </code></pre>
+            <span class="link-source">/demos/02-initiation/01-hello-world</span>
             <pre class="javascript"><code data-trim data-noescape>
               console.log('Hello World !');
             </code></pre>
@@ -213,9 +212,13 @@
             </ul>
           </section>
           <section>
+            <span class="link-source">/demos/02-initiation/02-local-variables</span>
             <pre class="javascript"><code data-trim data-noescape>
               let myString = 'My String';
               console.log(myString); // My String
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
             </code></pre>
           </section>
 
@@ -230,6 +233,7 @@
               </ul>
             </section>
           <section>
+            <span class="link-source">/demos/02-initiation/03-global-variables</span>
             <pre class="javascript"><code data-trim data-noescape>
               console.log(global);
             </code></pre>
@@ -238,6 +242,7 @@
             <p>Possible d'hydrater l'objet global avec des variables personnalisées</p>
           </section>
           <section>
+            <span class="link-source">/demos/02-initiation/03-global-variables</span>
             <pre class="javascript"><code data-trim data-noescape>
               global.myVariable = 'Toto';
               global.myFunction = function(name) { 
@@ -246,7 +251,10 @@
               };
               console.log(global);
               console.log(global.myVariable);
-              global.myFunction('Steve');
+              global.myFunction('Marcel');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
             </code></pre>
           </section>
           <section>
@@ -264,6 +272,7 @@
             <p>process.argv</p>
           </section>
           <section>
+            <span class="link-source">/demos/02-initiation/04-arguments</span>
             <pre class="javascript"><code data-trim data-noescape>
               function collectName() {
                 if(typeof(process.argv(['name']) === 'undefined')) 
@@ -291,6 +300,7 @@
             <p>process.stdin / process.stdout</p>
           </section>
           <section>
+            <span class="link-source">/demos/02-initiation/05-input-output</span>
             <pre class="javascript"><code data-trim data-noescape>
               process.stdout.write('Hello World');
             </code></pre>
@@ -299,123 +309,11 @@
             </code></pre>
           </section>
           <section>
+            <span class="link-source">/demos/02-initiation/05-input-output</span>
             <pre class="javascript"><code data-trim data-noescape>
               process.stdin.on('data', function(data) {
                 process.stdout.write('Data received');
               });
-            </code></pre>
-            <pre class="bash"><code data-trim data-noescape>
-              $ node index.js 
-            </code></pre>
-          </section>
-          <section>
-            <h4>Exercice</h4>
-          </section>
-          <section>
-            <p>
-              A l'aide de process.stdout et process.stdin, écrire un programme qui va poser trois questions à l'utilisateur, enregistrer ses réponses et,
-              une fois le process terminé, va afficher le récapitulatif et un indice calculé, au choix.
-            </p>
-          </section>
-          <section>
-            <p>Version procédurale</p>
-            <pre class="javascript"><code data-trim data-noescape>
-              
-              const questions = [
-                'What\'s your name ? \n', 
-                'What\'s your favorite animal ? \n',
-                'What\'s your favorite color ? \n'
-                ];
-              
-              const responses = [];
-              let cursor = 0;
-              
-              const ask = function() {
-                process.stdout.write(questions[cursor]);
-              };
-              
-              const resume = function() {
-                let loopCycle = questions.length;
-                let i = 0;
-                process.stdout.write('------------------------- \n');
-                process.stdout.write('Resume of the interview : \n');
-                process.stdout.write('------------------------- \n');
-                for(i ; i < loopCycle ; i++) {
-                  process.stdout.write(responses[i]);
-                }
-                process.stdout.write('Sorry dude, bad responses. \n');
-                process.exit();
-              };
-              
-              process.stdin.on('data', function(data) {
-                responses.push(data); 
-                cursor++;
-                cursor < ( questions.length ) ? ask() : resume();
-              });
-              
-              ask();
-
-            </code></pre>
-            <pre class="bash"><code data-trim data-noescape>
-              $ node index.js 
-            </code></pre>
-          </section>
-          <section>
-            <p>Version "objet" en JS à papa</p>
-            <pre class="javascript"><code data-trim data-noescape>
-              
-              const JokeManager = function() {
-
-              let responses = [], cursor = 0;
-              
-              const questions = [
-                'What\'s your name ? \n', 
-                'What\'s your favorite animal ? \n',
-                'What\'s your favorite color ? \n'
-              ];
-            
-              const init = function() {
-                listen();
-                ask();
-              };
-            
-              const ask = function() {
-                process.stdout.write(questions[cursor]);
-              };
-              
-              const listen = function() {
-                process.stdout.write('We listen the terminal\n');
-                process.stdin.on('data', function(data) {
-                  responses.push(data); 
-                  cursor++;
-                  cursor < ( questions.length ) ? ask() : resume();
-                });
-              };
-            
-              const resume = function() {
-                let loopCycle = questions.length;
-                let i = 0;
-                process.stdout.write('------------------------- \n');
-                process.stdout.write('Resume of the interview : \n');
-                process.stdout.write('------------------------- \n');
-                for(i ; i < loopCycle ; i++) {
-                  process.stdout.write(responses[i]);
-                }
-                process.stdout.write('Sorry dude, bad responses. \n');
-                process.exit();
-              };
-            
-              let self = this;
-              self.init = init;
-            
-              return self;
-            };
-            
-            global.utils = {};
-            global.utils.JokeManager = JokeManager();
-            
-            utils.JokeManager.init();
-
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
               $ node index.js 
@@ -428,16 +326,11 @@
           </section>
         
           <section>
-            <pre class="bash"><code data-trim data-noescape>
-              $ cd /var/www/node-beginners/
-              $ mkdir Exo-03 && cd Exo-03
-              $ touch index.js 
-              $ code index.js
-            </code></pre>
+            <span class="link-source">/demos/02-initiation/06-timing</span>
             <pre class="javascript"><code data-trim data-noescape>
               console.log('Hello World !');
               setTimeout(function() {
-                console.log('Sorry, the good string would be displayed in 3 seconds ...');
+                console.log('Loading ...');
               }, 2000);
               setTimeout(function() {
                 console.log('Hello Technocité');
@@ -448,6 +341,122 @@
             </code></pre>
           </section>
      
+          <section>
+              <h3>Exercices</h3>
+            </section>
+  
+            <section>
+              <p>
+                A l'aide de process.stdout et process.stdin, écrire un programme qui va poser trois questions à l'utilisateur, enregistrer ses réponses et,
+                une fois le process terminé, va afficher le récapitulatif et un indice calculé, au choix.
+              </p>
+            </section>
+  
+            <section>
+              <p>Version procédurale</p>
+              <span class="link-source">/exos/02-initiation/01-ask-manager/index.js</span>
+              <pre class="javascript"><code data-trim data-noescape>
+                const questions = [
+                  'What\'s your name ? \n', 
+                  'What\'s your favorite animal ? \n',
+                  'What\'s your favorite color ? \n'
+                  ];
+  
+                const responses = [];
+  
+                let cursor = 0;
+  
+                const ask = function() {
+                  process.stdout.write(questions[cursor]);
+                };
+                
+                const resume = function() {
+                  let loopCycle = questions.length;
+                  let i = 0;
+                  process.stdout.write('------------------------- \n');
+                  process.stdout.write('Resume of the interview : \n');
+                  process.stdout.write('------------------------- \n');
+                  for(i ; i < loopCycle ; i++) {
+                    process.stdout.write(responses[i]);
+                  }
+                  process.stdout.write('Sorry dude, bad responses. \n');
+                  process.exit();
+                };
+                
+                process.stdin.on('data', function(data) {
+                  responses.push(data); 
+                  cursor++;
+                  cursor < ( questions.length ) ? ask() : resume();
+                });
+                
+                ask();
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+            </section>
+  
+            <section>
+              <p>Version "objet" en JS old school</p>
+              <span class="link-source">/exos/02-initiation/01-ask-manager/index-better.js</span>
+              <pre class="javascript"><code data-trim data-noescape>
+                const AskManager = function() {
+  
+                let responses = [], cursor = 0;
+                
+                const questions = [
+                  'What\'s your name ? \n', 
+                  'What\'s your favorite animal ? \n',
+                  'What\'s your favorite color ? \n'
+                ];
+              
+                const init = function() {
+                  listen();
+                  ask();
+                };
+              
+                const ask = function() {
+                  process.stdout.write(questions[cursor]);
+                };
+                
+                const listen = function() {
+                  process.stdout.write('We listen the terminal\n');
+                  process.stdin.on('data', function(data) {
+                    responses.push(data); 
+                    cursor++;
+                    cursor < ( questions.length ) ? ask() : resume();
+                  });
+                };
+              
+                const resume = function() {
+                  let loopCycle = questions.length;
+                  let i = 0;
+                  process.stdout.write('------------------------- \n');
+                  process.stdout.write('Resume of the interview : \n');
+                  process.stdout.write('------------------------- \n');
+                  for(i ; i < loopCycle ; i++) {
+                    process.stdout.write(responses[i]);
+                  }
+                  process.stdout.write('Sorry dude, bad responses. \n');
+                  process.exit();
+                };
+              
+                let self = this;
+                self.init = init;
+              
+                return self;
+              };
+              
+              global.utils = {};
+              global.utils.AskManager = AskManager();
+              
+              utils.AskManager.init();
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+            </section>
+
         </section>
 
         <!-- 3. Gestion des modules -->
@@ -464,9 +473,9 @@
           </section>
           <section>
             <ul>
-              <li>Clairement plus orientés bas niveau</li>
-              <li>Font partie du coeur node.js</li>
-              <li>Sont accessibles globalement</li>
+              <li class="fragment" data-fragment-index="1">Clairement plus orientés bas niveau</li>
+              <li class="fragment" data-fragment-index="2">Font partie du coeur node.js</li>
+              <li class="fragment" data-fragment-index="3">Sont accessibles globalement</li>
             </ul>
           </section>
           <section>
@@ -483,59 +492,59 @@
             </code></pre>
           </section>
           <section>
-            <p>Exercice</p>
-          </section>
-          <section>
-            <p>Nous souhaitons pouvoir faire des vérifications quant au type des variables que nous utilisons dans un script.</p>
-          </section>
-          <section>
-            <p class="fragment" data-fragment-index="1">Diantre.</p> 
-            <p class="fragment" data-fragment-index="2">Fichtre.</p> 
-            <p class="fragment" data-fragment-index="3">Enfer et damnation.</p>
-            <p class="fragment" data-fragment-index="4">Comment faire ?</p>  
-          </section>
-          <section>
             <p>La doc est ton amie</p>
             <p>
-              <a href="https://nodejs.org/api/util.html#util_util_types">
-                https://nodejs.org/api/util.html#util_util_types
+              <a href="https://nodejs.org/api/">
+                https://nodejs.org/api/
               </a>
             </p>
           </section>
+
           <section>
+            <p>Nous souhaitons pouvoir faire des vérifications quant au type des variables que nous utilisons dans un script.</p>
+          </section>
+
+          <section>
+            <span class="link-source">/demos/03-modules/01-native/</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Util = require('util');
-            </code></pre>
-          </section>
-          <section>
-            <pre class="javascript"><code data-trim data-noescape>
               let stringToTest = 'Technocité';
               console.log(Util.types.isStringObject(stringToTest)); // false
-            </code></pre>
-          </section>
-          <section>
-            <pre class="javascript"><code data-trim data-noescape>
-              let stringToTest = new String('Technocité');
+              stringToTest = new String('Technocité');
               console.log(Util.types.isStringObject(stringToTest)); // true
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
             </code></pre>
           </section>
 
+          <section>
+            <p>Exercice</p>
+          </section>
+          
+          <section>
+            TODO avec un module natif
+          </section>
+       
           <!-- 3.2 -->
           <section>
             <h3>Les paquets node.js</h3> 
           </section>
+
           <section>
             <ul>
-              <li>Bas niveau et features</li>
-              <li>Accessibles globalement après installation</li>
-              <li>Quasiment tout ce que vous voulez a déjà été fait</li>
-              <li>Chargés via le Node Package Manager (npm)</li>
+              <li class="fragment" data-fragment-index="1">Bas niveau et features</li>
+              <li class="fragment" data-fragment-index="2">Accessibles globalement après installation</li>
+              <li class="fragment" data-fragment-index="3">Quasiment tout ce que vous voulez a déjà été fait</li>
+              <li class="fragment" data-fragment-index="4">Chargés via le Node Package Manager (npm)</li>
             </ul>
           </section>
+
           <section>
             <h4>Node Package Manager</h4>
             <p>Fondamental dans l'environnement node.js</p>
           </section>
+
           <section>
             <p>Installation</p>
             <pre class="bash"><code data-trim data-noescape>
@@ -544,42 +553,35 @@
               $ npm -h
             </code></pre>
           </section>
+
           <section>
             <p>Installer un paquet localement avec npm</p>
             <pre class="bash"><code data-trim data-noescape>
               $ npm install mon-bo-paquet --save
             </code></pre>
           </section>
+
           <section>
             <p>Installer un paquet globalement avec npm</p>
             <pre class="bash"><code data-trim data-noescape>
               $ npm install mon-bo-paquet-global -g
             </code></pre>
           </section>
+
           <section>
-            <p>Comme toujours, RTFM</p>
+            <p>RTFM. Encore.</p>
             <p>
               <a href="https://docs.npmjs.com/">
                 https://docs.npmjs.com/
               </a>
             </p>
           </section>
+          
           <section>
-            <h4>Exercices</h4>
-          </section>
-          <section>
-            <p>
-              Utiliser le module colors pour afficher des messages en couleur dans la console. Il faut pouvoir utiliser ce module 
-              dans tous les projets node.js.
-            </p>
-          </section>
-          <section>
+            <span class="link-source">/demos/03-modules/02-package/</span>
             <pre class="bash"><code data-trim data-noescape>
-              $ mkdir Exo-03 && cd Exo-03 
-              $ touch app.js
-              $ npm install colors -g
-              $ code app.js
-            </code></pre>
+                $ npm install colors --save-dev
+              </code></pre>
             <pre class="javascript"><code data-trim data-noescape>
               const Colors = require('colors');
               try {
@@ -589,18 +591,20 @@
               catch(e) { console.log(e.message.red); };
             </code></pre>
           </section>
+
+          <section>
+            <h3>Exercice</h3>
+          </section>
           <section>
             <p>
               Utiliser le module keyword-extractor pour recenser les occurrences de mots dans un contenu textuel.
             </p>
           </section>
           <section>
+            <span class="link-source">/exos/03-modules/02-package/</span>
             <pre class="bash"><code data-trim data-noescape>
-              $ mkdir Exo-04 && cd Exo-04 
-              $ touch app.js
-              $ npm install keyword-extractor --save
-              $ code app.js
-            </code></pre>
+                $ npm install keyword-extractor --save-dev
+              </code></pre>
             <pre class="javascript"><code data-trim data-noescape>
               const KeywordsExtractor = require('keyword-extractor');
               try {
@@ -614,104 +618,112 @@
               catch(e) { e.message.red };
             </code></pre>
           </section>
+
           <section>
-            <h4>Le fichier package.json</h4>
-          </section>
+              <h4>Le fichier package.json</h4>
+            </section>
+            <section>
+              <ul>
+                <li class="fragment" data-fragment-index="1">Crucial pour le versionnement et la maintenabilité</li>
+                <li class="fragment" data-fragment-index="2">Contient toutes les dépendances du projet</li>
+                <li class="fragment" data-fragment-index="3">Généré dès l'initialisation</li>
+                <li class="fragment" data-fragment-index="4">Mis à jour en permanence</li>
+              </ul>
+            </section>
+            <section>
+              <pre class="bash"><code data-trim data-noescape>
+                $ npm init
+              </code></pre>
+            </section>
+            <section>
+              <pre class="javascript"><code data-trim data-noescape>
+                {
+                  "name": "package-json-sample",
+                  "version": "1.0.0",
+                  "description": "Basis package.json sample",
+                  "main": "app.js",
+                  "scripts": {
+                    "test": "echo \"Error: no test specified\" && exit 1"
+                  },
+                  "author": "Steve Lebleu",
+                  "keywords": "package, package.json, repository",
+                  "license": "MIT"
+                }
+              </code></pre>
+            </section>
+            <section>
+              <p>Le fichier peut être édité manuellement, et sera mis à jour lorsque :</p>
+              <ul>
+                <li class="fragment" data-fragment-index="1">Un package sera installé en tant que dépendance directe : --save</li>
+                <li class="fragment" data-fragment-index="2">Un package sera installé en tant que dépendance de développement : --save-dev</li>
+              </ul>
+            </section>
+
           <section>
-            <ul>
-              <li>Crucial pour le versionnement et la maintenabilité</li>
-              <li>Contient toutes les dépendances du projet</li>
-              <li>Généré dès l'initialisation</li>
-              <li>Mis à jour en permanence</li>
-            </ul>
-          </section>
-          <section>
-            <pre class="bash"><code data-trim data-noescape>
-              $ mkdir Exo-03 && cd Exo-03 
-              $ npm init
-            </code></pre>
-          </section>
-          <section>
-            <pre class="javascript"><code data-trim data-noescape>
-              {
-                "name": "package-json-sample",
-                "version": "1.0.0",
-                "description": "Basis package.json sample",
-                "main": "app.js",
-                "scripts": {
-                  "test": "echo \"Error: no test specified\" && exit 1"
-                },
-                "author": "Steve Lebleu",
-                "keywords": "package, package.json, repository",
-                "license": "MIT"
-              }
-            </code></pre>
-          </section>
-          <section>
-            <p>Le fichier peut être édité manuellement, et sera mis à jour lorsque :</p>
-            <ul>
-              <li>Un package sera installé en tant que dépendance directe : --save</li>
-              <li>Un package sera installé en tant que dépendance de développement : --save-dev</li>
-            </ul>
+            <h4>Exercices</h4>
           </section>
           
-
           <!-- 3.3 -->
 
           <section>
             <h3>Modules custom</h3>
           </section>
           <section>
-            <p>Parce que tout n'existe pas tout fait ...</p>
-          </section>
-          <section>
             <p>Il est parfois nécessaire/utile/sympa de développer un module !</p>
           </section>
           <section>
+            <span class="link-source">/demos/03-modules/03-custom/modules/full-module-simple.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               module.exports = () => {
-                console.log('Hello, i am a module !');
+                console.log('Hello, i\'m a module !');
               };
             </code></pre>
+            <span class="link-source">/demos/03-modules/03-custom/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
-              const myExport = require('');
-              myExport();
+              const moduleWhoSayHello = require('./modules/full-module');
+              moduleWhoSayHello(); // Hello, i'm a module !
             </code></pre>
           </section>
           <section>
+            <span class="link-source">/demos/03-modules/03-custom/modules/full-module-with-param.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               module.exports = (name) => {
-                console.log(`Hello ${name}, i am a module !`);
+                console.log(`Hello ${name}, i'm a module !`);
               };
             </code></pre>
+            <span class="link-source">/demos/03-modules/03-custom/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
-              const myExport = require('');
-              myExport('Toto');
+                const moduleWhoSayHelloToMe = require('./modules/full-module-with-param');
+                moduleWhoSayHelloToMe('Steve'); // Hello Steve, i'm a module !
             </code></pre>
           </section>
           <section>
+            <span class="link-source">/demos/03-modules/03-custom/modules/multiple-exports.js</span>
             <pre class="javascript"><code data-trim data-noescape>
-              export.yourFunctionOne = () => {
+              exports.yourFunctionOne = () => {
                 console.log('Hello, i am the first function in a module !');
               }
-              export.yourFunctionTwo = (parameter) => {
+              exports.yourFunctionTwo = (parameter) => {
                 console.log('Hello, i am the second function in a module, and i have a parameter !');
                 console.log(`The parameter value is : ${parameter}`);
               }
             </code></pre>
+            <span class="link-source">/demos/03-modules/03-custom/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
-              const myExport = require('');
-              myExport.yourFunctionOne();
-              myExport.yourFunctionTwo(123);
+              const customUtilModule = require('./modules/multiple-exports');
+              customUtilModule.yourFunctionOne(); // Hello, i am the first function in a module !'
+              customUtilModule.yourFunctionTwo(123); // The parameter value is : 123
             </code></pre>
           </section>
+
           <section>
             <h4>Exercice</h4>
           </section>
           <section>
-            <p>Reprendre le module JS AskManager et en faire un vrai module node.</p>
+            <p>Reprendre le module JS AskManager (/exos/02-initiation/01-ask-manager) et en faire un vrai module node.</p>
           </section>
           <section>
+          <span class="link-source">/exos/03-modules/03-custom/ask.js</span>  
           <pre class="javascript"><code data-trim data-noescape>
             module.exports = function() {
 
@@ -760,25 +772,32 @@
               return self;
             };
             </code></pre>
+            <span class="link-source">/exos/03-modules/03-custom/index.js</span>  
             <pre class="javascript"><code data-trim data-noescape>
-              const AskManager = require(__dirname + '/export-1')();
+              const AskManager = require(__dirname + '/modules/ask')();
               AskManager.init();
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
               $ node index.js 
             </code></pre>
           </section>
-
+          
+          <section>
+            TODO exercice récapitulatif : package json, module natif, package, module custom : 4h
+          </section>
         </section>
           
         <!-- 4 -->
         <section>
+          
           <section>
               <h2>4. Gestion des événements</h2>
           </section>
+
           <section>
             <p>JavaScript intègre nativement la gestion des évènements</p>
           </section>
+
           <section>
             <pre class="javascript"><code data-trim data-noescape>
               const element = document.getElementById('my-element');
@@ -787,33 +806,12 @@
               }, true);
             </code></pre>
           </section>
-          <section>
-            <pre class="javascript"><code data-trim data-noescape>
-              const element = document.getElementById('my-element');
-              const myCustomEvent = new CustomEvent('my-event', { detail : 'Example of an event'});
-              element.addEventListener('my-event', function(e) {
-                alert(e.detail);
-              }, true);
-              element.dispatchEvent(myCustomEvent);
-            </code></pre>
-          </section>
-          <section>
-            <pre class="javascript"><code data-trim data-noescape>
-              const $element = $('#my-element');
-              $element.on('my-event', function(e) {
-                alert('Hello alert');
-              }, true);
-              $element.trigger('my-event');
-            </code></pre>
-          </section>
-          <section>
-            <p>Dans Node.js, il y a .js</p>
-          </section>
-         
+          
           <section>
             <p>Ecouter un événement</p>
           </section>
           <section>
+            <span class="link-source">/demos/04-events/01-listener/index.js</span>  
             <pre class="javascript"><code data-trim data-noescape>
               const listen = function() {
                 process.stdout.write('We listen the terminal\n');
@@ -831,6 +829,7 @@
             </a>
           </section>
           <section>
+            <span class="link-source">/demos/04-events/02-emitter/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Events = require('events');
               const game = new Events.EventEmitter();
@@ -843,6 +842,7 @@
           <section>
             <h3>Exercices</h3>
           </section>
+
           <section>
             <p>
                 Utiliser le module natif <a href="https://nodejs.org/api/readline.html" target="_blank">Readline</a>, et adapter le AskManager 
@@ -850,11 +850,12 @@
             </p>
             <ul>
               <li>Les questions doivent être affichées via la fonction question() du module</li>
-              <li>Le message d'au revoir doit être affiché après interception de l'event SIGINT</li>
+              <li>Le message d'au-revoir doit être affiché après interception de l'event SIGINT</li>
             </ul>
           </section>
+
           <section>
-            <p>Adapter le AskManager en implémentant vos propres écouteurs/déclencheurs d'événements.</p>
+            <p>TODO simple en implémentant vos propres écouteurs/déclencheurs d'événements.</p>
             <ul>
               <li>Ecouter les événements 'end' et 'error'</li>
               <li>Déclencher 'end' lorsque toutes les questions ont été posées</li>
@@ -863,6 +864,7 @@
               <li>Lorsque 'error' est déclenché, afficher une erreur, et déclencher l'événement 'end'</li>
             </ul>
           </section>
+
         </section>
 
         <!-- 5 -->
@@ -874,6 +876,7 @@
             <p>Node permet d'éxécuter des processus système natifs</p>
           </section>
           <section>
+            <span class="link-source">/demos/05-processus/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const exec = require('child_process').exec;
               exec('node -v', function( error, stdout) {
@@ -886,6 +889,7 @@
               $ node index.js 
             </code></pre>
           </section>
+
           <section>
             <h3>Exercice</h3>
           </section>
@@ -893,6 +897,7 @@
             <p>Lister les fichiers d'un répertoire avec la commande ls -l.</p>
           </section>
           <section>
+            <span class="link-source">/exos/05-processus/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
                 const exec = require('child_process').exec;
                 exec('ls -l', function( error, stdout) {
@@ -907,8 +912,6 @@
           </section>
         </section>
 
-        
-
         <!-- 6 -->
         <section>
 
@@ -920,6 +923,7 @@
               <h2>Lister un répertoire</h2>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/01-list-directory/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
                 const fs = require('fs');
   
@@ -950,6 +954,7 @@
               <h2>Lire un fichier</h2>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/02-read-file/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
                 const fs = require('fs');
 
@@ -980,6 +985,7 @@
             <h2>Ecrire dans un fichier</h2>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/03-write-file/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
 
@@ -1009,6 +1015,7 @@
             <h2>Créer un répertoire</h2>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/04-create-directory/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
 
@@ -1036,6 +1043,7 @@
           </section>
 
           <section>
+            <span class="link-source">/demos/06-files/05-rename-move-delete-files/rename.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
               
@@ -1056,6 +1064,7 @@
           </section>
 
           <section>
+            <span class="link-source">/demos/06-files/05-rename-move-delete-files/move.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
               
@@ -1076,9 +1085,9 @@
           </section>
 
           <section>
+            <span class="link-source">/demos/06-files/05-rename-move-delete-files/delete.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
-
               try {
                 fs.unlinkSync('./renamed-file.txt');
               }
@@ -1099,6 +1108,7 @@
             <h3>Renommer un répertoire</h3>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/06-rename-move-delete-directories/rename.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
               if(fs.existsSync('./public/to-delete')) {
@@ -1117,6 +1127,7 @@
             <h3>Déplacer un répertoire</h3>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/06-rename-move-delete-directories/move.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
               if(fs.existsSync('./public/renamed-directory')) {
@@ -1135,6 +1146,7 @@
             <h3>Supprimer un répertoire</h3>
           </section>
           <section>
+            <span class="link-source">/demos/06-files/06-rename-move-delete-directories/delete.js</span>
             <pre class="javascript"><code data-trim data-noescape>
                 const fs = require('fs');
 
@@ -1158,7 +1170,9 @@
           <section>
             <p>Lister et lire les fichiers d'un répertoire</p>
           </section>
+
           <section>
+            <span class="link-source">/exos/06-files/01-list-read-files/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
               try {
@@ -1185,11 +1199,110 @@
 
           <section>
             <p>
-              Considérant le répertoire de l'exercice qui contient des répertoires, qui contiennent parfois des fichiers, eux-mêmes contenant parfois du texte.
-              Vous devez effacer du disque les répertoires vides et les fichiers vides. Vous devez utiliser une fonction récursive pour parser les répertoires, et 
-              vous devez bien évidemment préserver le fichier index.js.
+              Considérant les répertoires fournis pour l'exercice, vous devez effacer les répertoires et les fichiers vides. 
+              Vous devez utiliser une fonction récursive pour parser les répertoires, et vous devez bien évidemment préserver le fichier 
+              index.js à la racine.
             </p>
             <p>Level up : logger les entrées supprimées dans un fichier texte placé dans ./logs/{timestamp}.txt</p>
+          </section>
+
+          <section>
+            <span class="link-source">/exos/06-files/02-remove-files-directories/helpers/directory-helper.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+                /**
+                * Get the text path of a resource
+                * 
+                * @param {String} path 
+                * @returns {String} as path of the directory
+                */
+                exports.getDirectoryPath = function(path) {
+                  let array = path.split('/');
+                  return array.splice(0, array.length -1).join('/');
+                };
+
+                /**
+                * Say if a directory contains files
+                * 
+                * @param {String} path  
+                * @returns {Boolean}
+                */
+                exports.hasChildrens = function(path) {
+                  return fs.readdirSync(path).length > 0;
+                };
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+          </section>
+
+
+        <section>
+          <span class="link-source">/exos/06-files/02-remove-files-directories/modules/garbage-collector.js</span>
+          <pre class="javascript"><code data-trim data-noescape>
+              const fs = require('fs');
+              const helper = require(`${process.cwd()}/helpers/directory-helper`);
+
+              /**
+              * Remove empty files/directories
+              * 
+              * @param {String} path 
+              */
+              garbageCollector = function(path) {
+
+                // Parse current path
+                let items = fs.readdirSync(path);
+
+                // Retrieve elements of current path
+                items.forEach( (item) => {
+                
+                  // Define full path
+                  let current = path + item;
+
+                  // Extract stats
+                  fs.stat(current, function(error, stats) {
+
+                    if(error) throw error;
+
+                    if( stats.isDirectory() ) {
+
+                      // If the current directory of the file is empty, we delete it
+                      !helper.hasChildrens( current ) ? fs.rmdirSync( current ) : garbageCollector(current + '/');
+
+                    }
+                    else if( stats.isFile() && item !== 'index.js') {
+                      
+                      // If empty file, we delete it
+                      stats.size === 0 && fs.unlinkSync(current);
+
+                      let directory = helper.getDirectoryPath(current);
+
+                      // If the parent directory of the file is empty, we delete it
+                      if( !helper.hasChildrens( directory ) ) {
+                        fs.rmdirSync( directory );
+                      }
+                            
+                    }
+                  });
+                });
+              }
+              module.exports = garbageCollector;
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
+            <span class="link-source">/exos/06-files/02-remove-files-directories/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+                const GarbageCollector = require(`${process.cwd()}/modules/garbage-collector`);
+                GarbageCollector('./');
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
           </section>
 
         </section>
@@ -1209,6 +1322,7 @@
             <h3>Lecture</h3>
           </section>
           <section>
+            <span class="link-source">/exos/07-streams/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const fs = require('fs');
 
@@ -1230,11 +1344,6 @@
               $ node index.js 
             </code></pre>
           </section>
-          <!--
-          <section>
-            <h3>Ecriture</h3>
-          </section>
-          -->
         </section>
 
         <!-- 8 -->
@@ -1254,6 +1363,7 @@
             <a href="https://nodejs.org/api/https.html" target="_blank">HTTPS</a>
           </section>
           <section>
+            <span class="link-source">/demos/08-http/01-http/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Http = require('http'); // https
               const options = {
@@ -1271,6 +1381,7 @@
             <h3>Créer une requête HTTP</h3>
           </section>
           <section>
+            <span class="link-source">/demos/08-http/02-server/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Http = require('http');
               const options = {
@@ -1308,6 +1419,7 @@
             <h3>Construire le serveur</h3>
           </section>
           <section>
+            <span class="link-source">/demos/08-http/03-server/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Http = require('http');
 
@@ -1324,23 +1436,13 @@
               $ node index.js 
             </code></pre>
           </section>
+
           <section>
+            <span class="link-source">/demos/08-http/03-server/index.js</span>
             <pre class="javascript"><code data-trim data-noescape>
               const server = Http.createServer( (request, response) => {
                 let output = '';
-                output += `
-                  <html>
-                    <head>
-                      <title>The last one page of the internets</title>
-                    </head>
-                    <body>
-                      <h1>Title h1</h1>
-                      <p>Lorem ipsum dolor sit amet</p>
-                      <h2>Title h2</h2>
-                      <p>Lorem ipsum dolor sit amet</p>
-                    </body>
-                  </html>
-                `;
+                output += `YOUR_HTML`;
               
                 response.writeHead(200, { 'Content-Type' : 'text/html' });
                 response.end('Node server created');
@@ -1360,13 +1462,210 @@
           </section>
 
           <section>
+            <span class="link-source">/demos/08-http/03-serve-static-file/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+                const Http = require('http');
+                const fs = require('fs');
+                const Path = require('path');
+
+                const server = Http.createServer( (req, response) => {
+                  
+                  console.log(`${req.method} : request for ${req.url}`);
+
+                  if(req.url === '/')
+                  {
+                    fs.readFile('./public/templates/index.html', 'UTF-8', (error, output) => {
+                      response.writeHead(200, { 'Content-Type' : 'text/html' });
+                      response.end(output);
+                    });
+                  }
+                  else if(req.url === '/about.html')
+                  {
+                    fs.readFile('./public/templates/about.html', 'UTF-8', (error, output) => {
+                      response.writeHead(200, { 'Content-Type' : 'text/html' });
+                      response.end(output);
+                    });
+                  }
+                  else if(req.url.match(/.css$/))
+                  {
+                    let path_css = Path.join(__dirname, 'public', 'assets', 'css', req.url);
+                    let stream_css = fs.createReadStream(path_css, 'UTF-8');
+
+                    response.writeHead(200, { 'Content-Type' : 'text/css' });
+                    stream_css.pipe(response);
+                  }
+                  else if(req.url.match(/.js$/))
+                  {
+                    let path_js = Path.join(__dirname, 'public', 'assets', 'js', req.url);
+                    let stream_js = fs.createReadStream(path_js, 'UTF-8');
+
+                    response.writeHead(200, { 'Content-Type' : 'text/js' });
+                    stream_js.pipe(response);
+                  }
+                  else
+                  {
+                    fs.readFile('./public/templates/404.html', 'UTF-8', (error, output) => {
+                      response.writeHead(200, { 'Content-Type' : 'text/html' });
+                      response.end(output);
+                    });
+                  }
+                });
+
+                server.listen(8001);
+
+                console.log('Node server listen port 8001 : http://localhost:8001');
+
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+          </section>
+          
+          <section>
             <h3>Servir du JSON</h3>
+          </section>
+          
+          <section>
+            <h4>Réponse serveur</h4>
+            <span class="link-source">/demos/08-http/04-serve-json-file/01-without-treatment/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+                const Http = require('http');
+
+                const server = Http.createServer( (req, response) => {
+                  
+                  console.log(`${req.method} : request for ${req.url}`);
+                
+                  const data = require('./public/files/list.json');
+                  
+                  if(req.url === '/')
+                  {
+                    response.writeHead(200, { 'Content-Type' : 'text/json' });
+                    //response.end(data);
+                    response.end(JSON.stringify(data));
+                  }
+                  else if(req.url === '/is-active')
+                  {
+                    let filter = data.filter( (item) => {
+                      return filter.isActive === true;
+                    });
+                    response.writeHead(200, { 'Content-Type' : 'text/json' });
+                    response.end(JSON.stringify(filter));
+                  }
+                
+                });
+                
+                server.listen(8001);
+                
+                console.log('Node server listen port 8001 : http://localhost:8001');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
           </section>
 
           <section>
+            <h4>Réponse et traitement</h4>
+            <span class="link-source">/demos/08-http/04-serve-json-file/02-with-treatment/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Http = require('http');
+              const fs = require('fs');
+              const Path = require('path');
+
+              const server = Http.createServer( (req, response) => {
+                
+                console.log(`${req.method} : request for ${req.url}`);
+
+                if(req.url === '/')
+                {
+                  fs.readFile('./public/templates/index.html', 'UTF-8', (error, output) => {
+                    response.writeHead(200, { 'Content-Type' : 'text/html' });
+                    response.end(output);
+                  });
+                }
+                else if(req.url.match(/.css$/))
+                {
+                  let path_css = Path.join(__dirname, 'public', 'assets', 'css', req.url);
+                  let stream_css = fs.createReadStream(path_css, 'UTF-8');
+
+                  response.writeHead(200, { 'Content-Type' : 'text/css' });
+                  stream_css.pipe(response);
+                }
+                else if(req.url.match(/.js$/))
+                {
+                  let path_js = Path.join(__dirname, 'public', 'assets', 'js', req.url);
+                  let stream_js = fs.createReadStream(path_js, 'UTF-8');
+
+                  response.writeHead(200, { 'Content-Type' : 'text/js' });
+                  stream_js.pipe(response);
+                }
+                else if(req.url.match(/.json$/))
+                {
+
+                  const data = require(`./public/files/${req.url}`);
+
+                  response.writeHead(200, { 'Content-Type' : 'text/json' });
+                  response.end(JSON.stringify(data));
+                }
+              });
+
+              server.listen(8001);
+
+              console.log('Node server listen port 8001 : http://localhost:8001');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+          
+          <section>
             <h3>Récupérer des données en POST</h3>
           </section>
+          
+          <section>
+            <span class="link-source">/demos/08-http/05-retrieve-post-data/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Http = require('http');
+              const fs = require('fs');
+              const Path = require('path');
 
+              const server = Http.createServer( (req, response) => {
+                
+                console.log(`${req.method} : request for ${req.url}`);
+
+                if(req.method === 'GET')
+                {
+                  fs.readFile('./public/templates/index.html', 'UTF-8', (error, output) => {
+                    response.writeHead(200, { 'Content-Type' : 'text/html' });
+                    response.end(output);
+                  });
+                }
+                else if(req.method === 'POST')
+                {
+                  let data = '';
+
+                  // Récupération des paquets de la requête
+                  req.on('data', (chunk) => {
+                    console.log(chunk);
+                    data += chunk;
+                  });
+
+                  // Renvoi d'une réponse quand tous les paquets ont été reçus
+                  req.on('end', () => {
+                    response.writeHead(200, { 'Content-Type' : 'text/html' });
+                    response.end(data);
+                  });
+                  
+                }
+              });
+
+              server.listen(8001);
+
+              console.log('Node server listen port 8001 : http://localhost:8001');
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+          </section>
         </section>
 
         <!-- 6 -->
