@@ -10,10 +10,13 @@ const server = Http.createServer( (request, response) => {
   output += `
     <html>
       <head>
-        <title></title>
+        <title>The last one page of the internets</title>
       </head>
       <body>
-      
+        <h1>Title h1</h1>
+        <p>Lorem ipsum dolor sit amet</p>
+        <h2>Title h2</h2>
+        <p>Lorem ipsum dolor sit amet</p>
       </body>
     </html>
   `;

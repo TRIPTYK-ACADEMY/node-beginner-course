@@ -1189,7 +1189,7 @@
               Vous devez effacer du disque les répertoires vides et les fichiers vides. Vous devez utiliser une fonction récursive pour parser les répertoires, et 
               vous devez bien évidemment préserver le fichier index.js.
             </p>
-            <p>Level up : logger les entrées supprimées dans un fichier texte placé dans ./logs/{timestamp.txt}</p>
+            <p>Level up : logger les entrées supprimées dans un fichier texte placé dans ./logs/{timestamp}.txt</p>
           </section>
 
         </section>
@@ -1255,7 +1255,7 @@
           </section>
           <section>
             <pre class="javascript"><code data-trim data-noescape>
-              const Http = require('http');
+              const Http = require('http'); // https
               const options = {
                 hostname : 'technocite.be',
                 path: '/index.php/fr/component/detailsform/?form=1192',
@@ -1270,9 +1270,89 @@
           <section>
             <h3>Créer une requête HTTP</h3>
           </section>
-
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Http = require('http');
+              const options = {
+                hostname : 'www.triptyk.eu',
+                path: '/fr/realisations',
+                port : 80,
+                method: 'GET'
+              };
+              
+              let request = Http.request(options, (response) => {
+                
+                let output = '';
+              
+                console.log('Connexion');
+                console.log(response.statusCode);
+                console.log(response.headers);
+              
+                response.setEncoding('UTF-8');
+                response.on('data', (stream) => {
+                  console.log(stream);
+                  output += stream;
+                });
+                response.on('end', () => {
+                  console.log(output);
+                });
+              });
+              
+              request.end();
+              </code></pre>
+              <pre class="bash"><code data-trim data-noescape>
+                $ node index.js 
+              </code></pre>
+          </section>
           <section>
             <h3>Construire le serveur</h3>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Http = require('http');
+
+              const server = Http.createServer( (request, response) => {
+                response.writeHead(200, { 'Content-Type' : 'text/plain' });
+                response.end('Node server created');
+              });
+
+              server.listen(8000);
+
+              console.log('Node server listen port 8000 : http://localhost:8000');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+          <section>
+            <pre class="javascript"><code data-trim data-noescape>
+              const server = Http.createServer( (request, response) => {
+                let output = '';
+                output += `
+                  <html>
+                    <head>
+                      <title>The last one page of the internets</title>
+                    </head>
+                    <body>
+                      <h1>Title h1</h1>
+                      <p>Lorem ipsum dolor sit amet</p>
+                      <h2>Title h2</h2>
+                      <p>Lorem ipsum dolor sit amet</p>
+                    </body>
+                  </html>
+                `;
+              
+                response.writeHead(200, { 'Content-Type' : 'text/html' });
+                response.end('Node server created');
+              });
+              
+              server.listen(8000);
+              
+              console.log('Node server listen port 8000 : http://localhost:8000');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
           </section>
 
           <section>
@@ -1293,23 +1373,70 @@
         <section>
 
           <section>
-            <h2>6. Outils intéressants</h2>
+            <h2>9. Outils intéressants</h2>
           </section>
+
           <section>
             <h3>NVM</h3>
+            <p>Gestion des versions Node.js</p>
+            <p><a href="https://github.com/creationix/nvm">https://github.com/creationix/nvm</a></p>
           </section>
+
           <section>
             <h3>Nodemon</h3>
+            <p>Gère les changements et redémarre le serveur</p>
+            <p><a href="https://nodemon.io/">https://nodemon.io/</a></p>
           </section>
+
           <section>
             <h3>PM2</h3>
+            <p>Gestion de serveur node en production</p>
+            <p><a href="http://pm2.keymetrics.io/">http://pm2.keymetrics.io/</a></p>
           </section>
 
+          <section>
+            <h3>Extensions VS Code</h3>
+          </section>
+
+          <section>
+            <ul>
+              <li>Javascript ES6 code snippets</li>
+              <li>Path intelliSense</li>
+              <li>DotENV</li>
+              <li>jsHint</li>
+              <li>ESLint</li>
+              <li>TODO Highlight</li>
+              <li>Git history</li>
+              <li>Auto Rename Tag</li>
+            </ul>
+          </section>
         </section>
 
-         <!-- 7 -->
-         <section>
-          <h2>7. Conclusion</h2>
+         <!-- 10 -->
+
+        <section>
+          <section>
+              <h2>10. Ressources</h2>
+          </section>
+          <section>
+            <ul>
+              <li>
+                <a href="https://www.nodebeginner.org/">https://www.nodebeginner.org/</a>
+              </li>
+              <li>
+                <a href="https://x-team.com/nodejs-resources/">https://x-team.com/nodejs-resources/</a>
+              </li>
+              <li>
+                <a href="http://book.mixu.net/node/">http://book.mixu.net/node/</a>
+              </li>
+              <li>
+                <a href="http://book.mixu.net/node/">http://book.mixu.net/node/</a>
+              </li>
+              <li>
+                <a href="https://risingstack.com/resources/node-hero">https://risingstack.com/resources/node-hero</a>
+              </li>
+            </ul>
+          </section>
         </section>
          
           <!--

@@ -94,17 +94,6 @@ This repository contains training files about Node.js for beginners.
 
   #### 8.6 Récupérer les données en POST
 
-
-
-
-
-
-
-
-
-
-
-
 ### 9. Quelques outils (très) intéressants
 
   #### 9.1 nodemon
@@ -129,5 +118,7 @@ This repository contains training files about Node.js for beginners.
 
   ##### 9.4.7 Git history
 
-### 10. Conclusion
+  ##### 9.4.8 Auto Rename Tag
+
+### 10. Ressources
 

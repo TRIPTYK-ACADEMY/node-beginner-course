@@ -17,7 +17,9 @@ const options = {
 };
 
 let request = Http.request(options, (response) => {
+  
   let output = '';
+
   console.log('Connexion');
   console.log(response.statusCode);
   console.log(response.headers);
