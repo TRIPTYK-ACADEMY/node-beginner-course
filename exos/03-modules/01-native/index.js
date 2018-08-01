@@ -1,7 +1,9 @@
 const Util = require('util');
-
-let stringToTest = 'Technocité';
-console.log(Util.types.isStringObject(stringToTest)); // false
-
-stringToTest = new String('Technocité');
-console.log(Util.types.isStringObject(stringToTest)); // true
+const data = [
+  { country : 'Belgique', rate : 21 },
+  { country : 'France', rate : 20 },
+  { country : 'Allemagne', rate : 17 },
+];
+data.forEach( (item) => {
+  console.log(Util.format('En %s, le taux de TVA est de %f%', item.country, item.rate));
+});

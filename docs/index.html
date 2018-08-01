@@ -501,10 +501,6 @@
           </section>
 
           <section>
-            <p>Nous souhaitons pouvoir faire des vérifications quant au type des variables que nous utilisons dans un script.</p>
-          </section>
-
-          <section>
             <span class="link-source">/demos/03-modules/01-native/</span>
             <pre class="javascript"><code data-trim data-noescape>
               const Util = require('util');
@@ -519,13 +515,31 @@
           </section>
 
           <section>
-            <p>Exercice</p>
+            <h3>Exercice</h3>
           </section>
           
           <section>
-            TODO avec un module natif
+            Pour la Belgique, la France et l'Allemagne, vous devez renvoyer en sortie une string formatée de la manière suivante : "En {{COUNTRY}}, le taux de TVA est de {{RATE}}%".
           </section>
        
+          <section>
+            <span class="link-source">/exos/03-modules/01-native/</span>
+            <pre class="javascript"><code data-trim data-noescape>
+              const Util = require('util');
+              const data = [
+                { country : 'Belgique', rate : 21 },
+                { country : 'France', rate : 20 },
+                { country : 'Allemagne', rate : 19 },
+              ];
+              data.forEach( (item) => {
+                console.log(Util.format('En %s, le taux de TVA est de %f%', item.country, item.rate));
+              });
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
           <!-- 3.2 -->
           <section>
             <h3>Les paquets node.js</h3> 
@@ -620,7 +634,7 @@
           </section>
 
           <section>
-              <h4>Le fichier package.json</h4>
+              <h3>Le fichier package.json</h3>
             </section>
             <section>
               <ul>
@@ -659,10 +673,6 @@
               </ul>
             </section>
 
-          <section>
-            <h4>Exercices</h4>
-          </section>
-          
           <!-- 3.3 -->
 
           <section>
@@ -783,8 +793,35 @@
           </section>
           
           <section>
-            TODO exercice récapitulatif : package json, module natif, package, module custom : 4h
+            <h3>Exercice récapitulatif</h3>
           </section>
+
+          <section>
+            <p>
+              Vous devez gérer l'affichage d'une liste de contacts. La data source est un simple objet json que vous écrivez vous-même. Les 
+              propriétés de chaque contact sont les suivantes :
+            </p>
+            <ul>
+              <li>Nom, prénom</li>
+              <li>Date de naissance au format YYYY-mm-dd</li>
+              <li>Adresse email</li>
+            </ul>
+            <p>
+              En console, votre programme doit afficher ces infos en une ligne pour chaque contact. Il doit être capable de dire si l'adresse email 
+              renseignée est correctement formée (module custom), et si l'hôte MX est valide (package). Enfin, vous devez formater l'affichage de la date à l'aide 
+              du module Util.
+            </p>
+          </section>
+
+          <section>
+            <span class="link-source">/exos/03-modules/04-all/</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
         </section>
           
         <!-- 4 -->
@@ -839,32 +876,24 @@
               game.emit('success', 'You win');
             </code></pre>
           </section>
+
           <section>
-            <h3>Exercices</h3>
+            <h3>Exercice</h3>
           </section>
 
           <section>
-            <p>
-                Utiliser le module natif <a href="https://nodejs.org/api/readline.html" target="_blank">Readline</a>, et adapter le AskManager 
-                de la manière suivante :
-            </p>
+            <p>Vous parsez et affichez votre liste de contacts.</p>
             <ul>
-              <li>Les questions doivent être affichées via la fonction question() du module</li>
-              <li>Le message d'au-revoir doit être affiché après interception de l'event SIGINT</li>
+              <li>Ecouter les événements 'end' et 'error'.</li>
+              <li>Déclencher 'end' lorsque tous les contacts ont été affichés. Le déclenchement de 'end' provoque l'affichage d'un message au choix.</li>
+              <li>Déclencher 'error' lorsqu'une erreur est rencontrée (ici, quand un contact n'a pas d'adresse email). Le déclenchement de 'end' provoque l'affichage d'un message au choix.</li>
             </ul>
           </section>
-
+          
           <section>
-            <p>TODO simple en implémentant vos propres écouteurs/déclencheurs d'événements.</p>
-            <ul>
-              <li>Ecouter les événements 'end' et 'error'</li>
-              <li>Déclencher 'end' lorsque toutes les questions ont été posées</li>
-              <li>Déclencher 'error' lorsqu'une erreur est rencontrée</li>
-              <li>Lorsque 'end' est déclenché, afficher un message variable, et quitter le process</li>
-              <li>Lorsque 'error' est déclenché, afficher une erreur, et déclencher l'événement 'end'</li>
-            </ul>
-          </section>
 
+          </section>
+          
         </section>
 
         <!-- 5 -->
@@ -1162,7 +1191,6 @@
             </code></pre>
           </section>
 
-
           <section>
             <h3>Exercices</h3>
           </section>
@@ -1458,6 +1486,29 @@
           </section>
 
           <section>
+            <h4>Exercice</h4>
+          </section>
+
+          <section>
+            <span class="link-source">/exos/08-http/01-http/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+              const server = Http.createServer( (request, response) => {
+                let output = '';
+                output += `YOUR_HTML`;
+              
+                response.writeHead(200, { 'Content-Type' : 'text/html' });
+                response.end('Node server created');
+              });
+              
+              server.listen(8000);
+              console.log('Node server listen port 8000 : http://localhost:8000');
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node index.js 
+            </code></pre>
+          </section>
+
+          <section>
             <h3>Servir des fichiers statiques</h3>
           </section>
 
@@ -1666,6 +1717,27 @@
                 $ node index.js 
               </code></pre>
           </section>
+
+          <section>
+            
+          </section>
+
+        </section>
+
+        <section>
+          <h3>Exercice récapitulatif</h3>
+        </section>
+
+        <section>
+          TODO FINAL
+          Créer un SPA avec des contenus de remplacement. Thème Agence de voyage
+          Le site doit avoir la structure suivante : Header + menu top bar + about + services + contact
+          Vous devez logger les prises de contact avant de les envoyer par email à l'aide de Nodemailer.
+          La présentation peut se limiter au strict minimum.
+          Au déclenchement du log, le mail doit partir
+          Le site doit disposer d'un mode demo, passé en paramètre lors de l'instanciation
+          Ce mode demo bloque l'envoi des emails lorsqu'il est activé
+          Les services sont récupérés dans un fichier JSON, et affichés
         </section>
 
         <!-- 6 -->
