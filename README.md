@@ -120,5 +120,6 @@ This repository contains training files about Node.js for beginners.
 
   ##### 9.4.8 Auto Rename Tag
 
-### 10. Ressources
+### 10. Ressources 
 
+### 11. Exercice final

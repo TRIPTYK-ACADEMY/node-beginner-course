@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -798,27 +798,58 @@
 
           <section>
             <p>
-              Vous devez gérer l'affichage d'une liste de contacts. La data source est un simple objet json que vous écrivez vous-même. Les 
-              propriétés de chaque contact sont les suivantes :
+              Vous créez un module chargé d'afficher une liste de contacts. La data source est un simple objet json. Vous devez utiliser le module Util pour formater l'âge.
             </p>
+            <p>Données à afficher :</p>
             <ul>
-              <li>Nom, prénom</li>
-              <li>Date de naissance au format YYYY-mm-dd</li>
-              <li>Adresse email</li>
+              <li>Name</li>
+              <li>%i years </li>
+              <li>Is active - Is not active</li>
+              <li>Email</li>
+              <li>Email well formated (true|false) -> helper</li>
             </ul>
-            <p>
-              En console, votre programme doit afficher ces infos en une ligne pour chaque contact. Il doit être capable de dire si l'adresse email 
-              renseignée est correctement formée (module custom), et si l'hôte MX est valide (package). Enfin, vous devez formater l'affichage de la date à l'aide 
-              du module Util.
-            </p>
           </section>
 
           <section>
-            <span class="link-source">/exos/03-modules/04-all/</span>  
+            <span class="link-source">/exos/03-modules/04-all/helpers/isValid</span>  
             <pre class="javascript"><code data-trim data-noescape>
+                exports.email = async (email) => {
+                  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                  return regex.test(String(email).toLowerCase());
+                };
+            </code></pre>
+          </section>
+
+          <section>
+            <span class="link-source">/exos/03-modules/04-all/modules/contact</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+                const Util = require('util');
+                const IsValid = require('./../helpers/isValid');
+
+                const display = async () => {
+                  const contacts = JSON.parse({{JSON_DATA_SOURCE}});
+                  contacts.forEach( async (contact) => {
+                    let isWellFormatedEmail = await IsValid.email(contact.email);
+                    process.stdout.write(`
+                      ${contact.name} - ${contact.isActive ? 'Is active' : 'Is not active'} - ${Util.format('%i years' , contact.age)} - ${contact.email} - ${isWellFormatedEmail} \r`);    
+                  });
+                };
+
+                exports.display = display;
+            </code></pre>
+
+          </section>
+
+          <section>
+
+            <span class="link-source">/exos/03-modules/04-all/app.js</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+                const Contact = require('./modules/contact');
+                Contact.display();
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
-              $ node index.js 
+              $ node app.js 
             </code></pre>
           </section>
 
@@ -891,7 +922,60 @@
           </section>
           
           <section>
+            <span class="link-source">/exos/04-events/02-all/helpers/isValid</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+                exports.email = async (email) => {
+                  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                  return regex.test(String(email).toLowerCase());
+                };
+            </code></pre>
+          </section>
 
+          <section>
+            <span class="link-source">/exos/04-events/02-all/modules/contact</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+                const Util = require('util');
+                const IsValid = require('./../helpers/isValid');
+                const ContactEventEmitter = new Events.EventEmitter();
+
+                ContactEventEmitter.on('end', (message) => {
+                  console.info(message);
+                });
+                
+                ContactEventEmitter.on('error', (message) => {
+                  console.error(message);
+                });
+                
+                const display = async () => {
+                  const contacts = JSON.parse({{JSON_DATA_SOURCE}});
+                  contacts.forEach( async (contact) => {
+                    if(!contact.email)
+                    {
+                      ContactEventEmitter.emit('error', `\r\r ${contact.name} as not email address`);
+                    }
+                    let isWellFormatedEmail = await IsValid.email(contact.email);
+                    process.stdout.write(`
+                      ${contact.name} - ${contact.isActive ? 'Is active' : 'Is not active'} - ${Util.format('%i years' , contact.age)} - ${contact.email} - ${isWellFormatedEmail} \r`);    
+                  });
+                  ContactEventEmitter.emit('end', '\n\n All results are displayed');
+                };
+
+                exports.display = display;
+            </code></pre>
+
+          </section>
+
+          <section>
+            
+            <span class="link-source">/exos/04-events/02-all/app.js</span>  
+            <pre class="javascript"><code data-trim data-noescape>
+                const Contact = require('./modules/contact');
+                Contact.display();
+            </code></pre>
+            <pre class="bash"><code data-trim data-noescape>
+              $ node app.js 
+            </code></pre>
           </section>
           
         </section>
@@ -1718,26 +1802,6 @@
               </code></pre>
           </section>
 
-          <section>
-            
-          </section>
-
-        </section>
-
-        <section>
-          <h3>Exercice récapitulatif</h3>
-        </section>
-
-        <section>
-          TODO FINAL
-          Créer un SPA avec des contenus de remplacement. Thème Agence de voyage
-          Le site doit avoir la structure suivante : Header + menu top bar + about + services + contact
-          Vous devez logger les prises de contact avant de les envoyer par email à l'aide de Nodemailer.
-          La présentation peut se limiter au strict minimum.
-          Au déclenchement du log, le mail doit partir
-          Le site doit disposer d'un mode demo, passé en paramètre lors de l'instanciation
-          Ce mode demo bloque l'envoi des emails lorsqu'il est activé
-          Les services sont récupérés dans un fichier JSON, et affichés
         </section>
 
         <!-- 6 -->
@@ -1808,26 +1872,57 @@
               </li>
             </ul>
           </section>
+
         </section>
-         
-          <!--
+
+        <section>
+
           <section>
-              <h3>nvm</h3>
-              <p>Gérer différentes versions sur une machine</p>
-              <pre class="bash"><code data-trim data-noescape>
-                  $ sudo apt-get update
-                  $ sudo apt-get install build-essential libssl-dev
-                </code></pre>
-              <pre class="bash"><code data-trim data-noescape>
-                  $ curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh -o install_nvm.sh
-                </code></pre>
-              <pre class="bash"><code data-trim data-noescape>
-                  $ bash install_nvm.sh
-                </code></pre>
-              <pre class="bash"><code data-trim data-noescape>
-                  $ source ~/.profile
-                </code></pre>
-            </section>-->
+            <h2>11. Exercice final</h2>
+            <p>Créer un mini-site pour une agence de voyage.</p>
+            <p>Vous devez respecter le cahier des charges suivant.</p>
+          </section>
+
+          <section>
+              <h3>Contenus</h3>
+              <ul>
+                <li>Header : logo + menu top bar : image de background</li>
+                <li>Footer : 3 colonnes (logo + description de la société, dernières news, tags)</li>
+              </ul>
+              <ul>
+                <li>Page "Home" : sections "Top destinations", "Special Offers"</li>
+                <li>Page "About" : 1 titre et 1 description</li>
+                <li>Page "Destinations" : 4 destinations (1 destination = prix, lieu, photo)</li>
+                <li>Page "Contact" : 1 formulaire de contact (nom, email, message)</li>
+              </ul>
+          </section>
+
+          <section>
+            <h3>Features</h3>
+            <ul>
+              <li>Envoi du formulaire de contact avec Nodemailer</li>
+              <li>Log des envois de mails dans un fichier ./logs/emails.txt</li>
+              <li>Mode "Demo" qui bloque l'envoi du formulaire</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h3>Contraintes techniques</h3>
+            <ul>
+              <li>Implémentation MVC</li>
+              <li>Data source = fichier .json</li>
+              <li>Ecriture du log est déclenchée par un événement custom</li>
+              <li>Le mode "Demo" doit être activé au lancement via un paramètre</li>
+              <li>Pas de template pour le moment, données brutes.</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h3>Délais</h3>
+            <p>Le client attend une première version du projet dans 8h.</p>
+          </section>
+
+        </section>
 
 			</div>
 		</div>
@@ -1840,6 +1935,11 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+        controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
