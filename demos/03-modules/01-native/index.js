@@ -1,5 +1,11 @@
-const Util = require('util');
-let stringToTest = 'Technocité';
-console.log(Util.types.isStringObject(stringToTest)); // false
-stringToTest = new String('Technocité');
-console.log(Util.types.isStringObject(stringToTest)); // true
+const util = require('util');
+
+async function fn() {
+  return 'hello world';
+}
+const callbackFunction = util.callbackify(fn);
+
+callbackFunction((err, ret) => {
+  if (err) throw err;
+  console.log(ret);
+});

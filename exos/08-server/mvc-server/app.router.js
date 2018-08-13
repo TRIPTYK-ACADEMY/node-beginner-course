@@ -17,5 +17,4 @@ module.exports = ( request, response ) => {
     {
         require(process.cwd() + '/controllers/error.js')(request, response)
     }
-
 }

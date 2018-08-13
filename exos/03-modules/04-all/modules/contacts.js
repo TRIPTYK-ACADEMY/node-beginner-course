@@ -3,7 +3,7 @@ const Util = require('util');
 const IsValid = require('./../helpers/isValid');
 
 const display = async () => {
-  const contacts = JSON.parse(
+  const contacts = 
     [
       {
         "_id": "5b6811ef72e5e57a29effece",
@@ -231,7 +231,7 @@ const display = async () => {
         "favoriteFruit": "strawberry"
       }
     ]
-  );
+  ;
   contacts.forEach( async (contact) => {
     let isWellFormatedEmail = await IsValid.email(contact.email);
     process.stdout.write(`

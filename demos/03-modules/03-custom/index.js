@@ -1,4 +1,4 @@
-const moduleWhoSayHello = require('./modules/full-module');
+const moduleWhoSayHello = require('./modules/full-module-simple');
 const moduleWhoSayHelloToMe = require('./modules/full-module-with-param');
 const customUtilModule = require('./modules/multiple-exports');
 
