@@ -1,6 +1,7 @@
 const routes = 
 [
-    { url : '/', controller : 'index' }
+  { url : '/', controller : 'index' },
+  { url : '/test', controller : 'test' },
 ]
 
 module.exports = ( request, response ) => {

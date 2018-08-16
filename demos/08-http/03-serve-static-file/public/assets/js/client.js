@@ -11,7 +11,10 @@
       if(confirm('Will you visit our products ?'))
         window.location.href = '/products.html';
       else 
-        document.body.write('<p>You have declined our products.</p>');
+      {
+        var output = document.getElementById('output');
+        output.innerHTML = '<p>You have declined our products.</p>';
+      }
     }, true);
   };
   

@@ -1,6 +1,5 @@
 const Http = require('http');
-const fs = require('fs');
-const Path = require('path');
+const Fs = require('fs');
 
 const server = Http.createServer( (req, response) => {
   
@@ -8,7 +7,7 @@ const server = Http.createServer( (req, response) => {
 
   if(req.method === 'GET')
   {
-    fs.readFile('./views/index.html', 'UTF-8', (error, output) => {
+    Fs.readFile('./views/index.html', 'UTF-8', (error, output) => {
       response.writeHead(200, { 'Content-Type' : 'text/html' });
       response.end(output);
     });
@@ -17,18 +16,15 @@ const server = Http.createServer( (req, response) => {
   {
     let data = '';
 
-    // Récupération des paquets de la requête
     req.on('data', (chunk) => {
       console.log(chunk);
       data += chunk;
     });
-
-    // Renvoi d'une réponse quand tous les paquets ont été reçus
-    req.on('end', (data) => {
-      response.writeHead(200, { 'Content-Type' : 'text/html' });
+    
+    req.on('end', () => {
+      response.writeHead(200, { 'Content-type' : 'text/html' });
       response.end(data);
     });
-    
   }
 });
 

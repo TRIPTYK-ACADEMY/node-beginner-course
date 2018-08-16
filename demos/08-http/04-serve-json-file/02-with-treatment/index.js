@@ -8,7 +8,7 @@ const server = Http.createServer( (req, response) => {
 
   if(req.url === '/')
   {
-    fs.readFile('./public/templates/index.html', 'UTF-8', (error, output) => {
+    fs.readFile('./views/index.html', 'UTF-8', (error, output) => {
       response.writeHead(200, { 'Content-Type' : 'text/html' });
       response.end(output);
     });

@@ -1,8 +1,4 @@
-const Util = require('util');
-const IsValid = require('./../helpers/isValid');
-
-const display = async () => {
-  const contacts = 
+const contacts = 
     [
       {
         "_id": "5b6811ef72e5e57a29effece",
@@ -16,7 +12,7 @@ const display = async () => {
         "name": "Nola Oneill",
         "gender": "female",
         "company": "DIGITALUS",
-        "email": "nolaoneill@digitalus.com",
+        "email": "nolaoneilldigitalus.com",
         "phone": "+1 (935) 574-2911",
         "address": "372 Wilson Avenue, Loretto, Colorado, 8876",
         "about": "Labore ea quis qui ea sint est dolor. Deserunt cupidatat pariatur excepteur qui nostrud exercitation Lorem est sint magna nulla sint do commodo. Fugiat nostrud laboris deserunt veniam aliquip est irure.\r\n",
@@ -231,11 +227,5 @@ const display = async () => {
       }
     ]
   ;
-  contacts.forEach( async (contact) => {
-    let isWellFormatedEmail = await IsValid.email(contact.email);
-    process.stdout.write(`
-      ${contact.name} - ${contact.isActive ? 'Is active' : 'Is not active'} - ${Util.format('%i years' , contact.age)} - ${contact.email} - ${isWellFormatedEmail} \r`);    
-  });
-};
 
-exports.display = display;
+  exports.contacts = contacts;

@@ -1,4 +1,5 @@
-const GarbageCollector = require(`${process.cwd()}/modules/files-garbage-collector`);
+const fs = require('fs');
+const helper = require(`${process.cwd()}/helpers/directory-helper`);
 
 /**
  * Remove empty files/directories
@@ -47,4 +48,4 @@ garbageCollector = function(path) {
   });
 }
 
-GarbageCollector('../02-remove-files-directories-bk/');
+module.exports = garbageCollector;
