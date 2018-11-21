@@ -94,31 +94,35 @@ This repository contains training files about Node.js for beginners.
 
   #### 8.6 Récupérer les données en POST
 
-### 9. Quelques outils (très) intéressants
+### 9. Outils intéressants
 
   #### 9.1 nodemon
 
   #### 9.2 NVM
 
-  #### 9.3 pm2 
+  #### 9.3 PM2 
 
-  #### 9.4 Extensions VS Code
+  #### 9.4 Module supervisor
 
-  ##### 9.4.1 Javascript ES6 code snippets
+  #### 9.5 Module node-inspector
 
-  ##### 9.4.2 Path intelliSense
+  #### 9.5 Extensions VS Code
 
-  ##### 9.4.3 DotENV
+  ##### 9.5.1 Javascript ES6 code snippets
 
-  ##### 9.4.4 jsHint
+  ##### 9.5.2 Path intelliSense
 
-  ##### 9.4.5 ESLint
+  ##### 9.5.3 DotENV
 
-  ##### 9.4.6 TODO Highlight
+  ##### 9.5.4 jsHint
 
-  ##### 9.4.7 Git history
+  ##### 9.5.5 ESLint
 
-  ##### 9.4.8 Auto Rename Tag
+  ##### 9.5.6 TODO Highlight
+
+  ##### 9.5.7 Git history
+
+  ##### 9.5.8 Auto Rename Tag
 
 ### 10. Ressources 
 
