@@ -106,23 +106,23 @@ This repository contains training files about Node.js for beginners.
 
   #### 9.5 Module node-inspector
 
-  #### 9.5 Extensions VS Code
+  #### 9.6 Extensions VS Code
 
-  ##### 9.5.1 Javascript ES6 code snippets
+  ##### 9.6.1 Javascript ES6 code snippets
 
-  ##### 9.5.2 Path intelliSense
+  ##### 9.6.2 Path intelliSense
 
-  ##### 9.5.3 DotENV
+  ##### 9.6.3 DotENV
 
-  ##### 9.5.4 jsHint
+  ##### 9.6.4 jsHint
 
-  ##### 9.5.5 ESLint
+  ##### 9.6.5 ESLint
 
-  ##### 9.5.6 TODO Highlight
+  ##### 9.6.6 TODO Highlight
 
-  ##### 9.5.7 Git history
+  ##### 9.6.7 Git history
 
-  ##### 9.5.8 Auto Rename Tag
+  ##### 9.6.8 Auto Rename Tag
 
 ### 10. Ressources 
 
