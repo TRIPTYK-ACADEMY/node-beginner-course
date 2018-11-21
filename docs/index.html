@@ -52,11 +52,10 @@
           </section>
             
           <section>
-            Environnement d'exécution Javascript construit sur le moteur JavaScript V8 de Chrome. 
-          </section>
-            
-          <section>
-            Environnement bas niveau permettant l’exécution de JavaScript côté serveur.
+            <ul>
+              <li class="fragment" data-fragment-index="1">Environnement d'exécution Javascript construit sur le moteur JavaScript V8 de Chrome. </li>
+              <li class="fragment" data-fragment-index="2">Environnement bas niveau permettant l’exécution de JavaScript côté serveur.</li>
+            </ul>
           </section>
 
           <!-- 1.2 -->
@@ -71,7 +70,7 @@
               <li class="fragment" data-fragment-index="3">Le plus grand écosystème (npm) de bibliothèques open source au monde !</li>
               <li class="fragment" data-fragment-index="4">Coûts de production très bas par rapport aux technologies concurrentes.</li>
             </ul>
-           </section>
+          </section>
          
           <!-- 1.3 -->
           <section>
@@ -93,9 +92,9 @@
           
           <section>
             <p>
-                Node.js a été créé par Ryan Dahl en 2009, qui a eu cette idée après avoir observé la barre de progression d'un chargement de 
-                fichier : le navigateur ne savait pas quel pourcentage du fichier était chargé, et devait interroger le serveur web. 
-                Dahl voulait développer une méthode plus simple et quand le moteur V8 fut diffusé, il commença à s'intéresser à JS : node.js était né !
+              Node.js a été créé par Ryan Dahl en 2009, qui a eu cette idée après avoir observé la barre de progression d'un chargement de 
+              fichier : le navigateur ne savait pas quel pourcentage du fichier était chargé, et devait interroger le serveur web. 
+              Dahl voulait développer une méthode plus simple et quand le moteur V8 fut diffusé, il commença à s'intéresser à JS : node.js était né !
             </p>
             <cite>Wikipédia - <a href="https://fr.wikipedia.org/wiki/Node.js" target="_blank">https://fr.wikipedia.org/wiki/Node.js</a></cite>
           </section>
@@ -177,6 +176,7 @@
                 $ node app.js
               </code></pre>
           </section>
+
         </section>
         
          <!-- 2. Utilisation en ligne de commande -->
@@ -215,8 +215,8 @@
           <section>
             <span class="link-source">/demos/02-initiation/02-local-variables</span>
             <pre class="javascript"><code data-trim data-noescape>
-              let myString = 'My String';
-              console.log(myString); // My String
+              let myString = 'I\'m a String';
+              console.log(myString); // I'm a String
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
               $ node index.js 
@@ -250,7 +250,6 @@
                 if(!name) return false; 
                 console.log(`Hello ${name}`); 
               };
-              console.log(global);
               console.log(global.myVariable);
               global.myFunction('Marcel');
             </code></pre>
@@ -276,17 +275,17 @@
             <span class="link-source">/demos/02-initiation/04-arguments</span>
             <pre class="javascript"><code data-trim data-noescape>
               function collectName() {
-                if(typeof(process.argv(['name']) === 'undefined')) 
+                if(typeof(process.argv[2]) === 'undefined') 
                   return 'Pas de nom trouvé';
                 else 
-                  return `Hello ${process.argv['name']}`;
+                  return `Hello ${process.argv[2]}`;
               }
               const output = collectName();
               console.log(output);
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
-              $ node index.js --name Steve // Hello Steve
-              $ node index.js --message Hello // Pas de nom trouvé
+              $ node index.js Sophie // Hello Sophie
+              $ node index.js // Pas de nom trouvé
             </code></pre>
           </section>
 
@@ -303,7 +302,7 @@
           <section>
             <span class="link-source">/demos/02-initiation/05-input-output</span>
             <pre class="javascript"><code data-trim data-noescape>
-              process.stdout.write('Hello World');
+              process.stdout.write('Hello World\n');
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
               $ node index.js 
@@ -313,7 +312,8 @@
             <span class="link-source">/demos/02-initiation/05-input-output</span>
             <pre class="javascript"><code data-trim data-noescape>
               process.stdin.on('data', function(data) {
-                process.stdout.write('Data received');
+                process.stdout.write('Data received\n');
+                process.stdout.write(data);
               });
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
@@ -329,7 +329,6 @@
           <section>
             <span class="link-source">/demos/02-initiation/06-timing</span>
             <pre class="javascript"><code data-trim data-noescape>
-              console.log('Hello World !');
               setTimeout(function() {
                 console.log('Loading ...');
               }, 2000);
@@ -403,49 +402,49 @@
               <pre class="javascript"><code data-trim data-noescape>
                 const AskManager = function() {
   
-                let responses = [], cursor = 0;
+                  let responses = [], cursor = 0;
+                  
+                  const questions = [
+                    'What\'s your name ? \n', 
+                    'What\'s your favorite animal ? \n',
+                    'What\'s your favorite color ? \n'
+                  ];
                 
-                const questions = [
-                  'What\'s your name ? \n', 
-                  'What\'s your favorite animal ? \n',
-                  'What\'s your favorite color ? \n'
-                ];
-              
-                const init = function() {
-                  listen();
-                  ask();
-                };
-              
-                const ask = function() {
-                  process.stdout.write(questions[cursor]);
-                };
+                  const init = function() {
+                    listen();
+                    ask();
+                  };
                 
-                const listen = function() {
-                  process.stdout.write('We listen the terminal\n');
-                  process.stdin.on('data', function(data) {
-                    responses.push(data); 
-                    cursor++;
-                    cursor < ( questions.length ) ? ask() : resume();
-                  });
-                };
+                  const ask = function() {
+                    process.stdout.write(questions[cursor]);
+                  };
+                  
+                  const listen = function() {
+                    process.stdout.write('We listen the terminal\n');
+                    process.stdin.on('data', function(data) {
+                      responses.push(data); 
+                      cursor++;
+                      cursor < ( questions.length ) ? ask() : resume();
+                    });
+                  };
               
-                const resume = function() {
-                  let loopCycle = questions.length;
-                  let i = 0;
-                  process.stdout.write('------------------------- \n');
-                  process.stdout.write('Resume of the interview : \n');
-                  process.stdout.write('------------------------- \n');
-                  for(i ; i < loopCycle ; i++) {
-                    process.stdout.write(responses[i]);
-                  }
-                  process.stdout.write('Sorry dude, bad responses. \n');
-                  process.exit();
-                };
+                  const resume = function() {
+                    let loopCycle = questions.length;
+                    let i = 0;
+                    process.stdout.write('------------------------- \n');
+                    process.stdout.write('Resume of the interview : \n');
+                    process.stdout.write('------------------------- \n');
+                    for(i ; i < loopCycle ; i++) {
+                      process.stdout.write(responses[i]);
+                    }
+                    process.stdout.write('Sorry dude, bad responses. \n');
+                    process.exit();
+                  };
+                
+                  let self = this;
+                  self.init = init;
               
-                let self = this;
-                self.init = init;
-              
-                return self;
+                  return self;
               };
               
               global.utils = {};
@@ -492,23 +491,21 @@
                 require()
             </code></pre>
           </section>
-          <section>
-            <p>La doc est ton amie</p>
-            <p>
-              <a href="https://nodejs.org/api/">
-                https://nodejs.org/api/
-              </a>
-            </p>
-          </section>
-
+         
           <section>
             <span class="link-source">/demos/03-modules/01-native/</span>
             <pre class="javascript"><code data-trim data-noescape>
-              const Util = require('util');
-              let stringToTest = 'Technocité';
-              console.log(Util.types.isStringObject(stringToTest)); // false
-              stringToTest = new String('Technocité');
-              console.log(Util.types.isStringObject(stringToTest)); // true
+              const util = require('util');
+
+              async function fn() {
+                return 'hello world';
+              }
+              const callbackFunction = util.callbackify(fn);
+
+              callbackFunction((err, ret) => {
+                if (err) throw err;
+                console.log(ret);
+              });
             </code></pre>
             <pre class="bash"><code data-trim data-noescape>
               $ node index.js 
@@ -598,7 +595,7 @@
                 $ npm install colors --save-dev
               </code></pre>
             <pre class="javascript"><code data-trim data-noescape>
-              const Colors = require('colors');
+              require('colors');
               try {
                 let test = 'String to test';
                 test.relace('test', 'break');
@@ -1803,6 +1800,70 @@
               </code></pre>
           </section>
 
+          <section>
+            <h3>Utiliser le pattern MVC</h3>
+          </section>
+
+          <section>
+            <span class="link-source">/demos/08-http/06-mvc-server/app.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+              const router = require('./app.router')
+              const http = require('http')
+              http.createServer( router ).listen('8001', ( error ) => {
+                  if(error) throw error
+                  console.log('Server is running')
+              } )
+            </code></pre>
+          </section>
+
+          <section>
+            <span class="link-source">/demos/08-http/06-mvc-server/app.router.js</span>
+              <pre class="javascript"><code data-trim data-noescape>
+                const routes = 
+                [
+                  { url : '/', controller : 'index' }
+                ]
+                
+                module.exports = ( request, response ) => {
+                  let index = routes.findIndex( ( item ) => item.url === request.url )
+                  if(index !== -1)
+                  {
+                    require(process.cwd() + '/controllers/' + routes[index].controller)(request, response)
+                  }
+                  else 
+                  {
+                    require(process.cwd() + '/controllers/error.js')(request, response)
+                  }
+                };
+              </code></pre>
+          </section>
+
+          <section>
+            <span class="link-source">/demos/08-http/06-mvc-server/controllers/index.js</span>
+            <pre class="javascript"><code data-trim data-noescape>
+                const fs = require('fs');
+                const promisify = require('es6-promisify').promisify;
+                const read = promisify(fs.readFile);
+                
+                module.exports = async ( request, response ) => {
+                    read( `${process.cwd()}/views/index.html`, { encoding : 'utf-8' } )
+                        .then( result => {
+                            read( `${process.cwd()}/models/contacts.json`, { encoding : 'utf-8' }).then( (model) => {
+                                let mod = JSON.parse(model);
+                                let template = '';
+                                mod.forEach( (item) => {
+                                    template += '<li>' + item.name + '</li>\r';
+                                });
+                                let output = result.replace(/{{LIST}}/, template);
+                                response.end(output)
+                            });
+                           
+                        })
+                        .catch( error => { console.log( error ) })
+                }
+            </code></pre>
+          </section>
+
         </section>
 
         <!-- 6 -->
@@ -1866,9 +1927,6 @@
                 <a href="http://book.mixu.net/node/">http://book.mixu.net/node/</a>
               </li>
               <li>
-                <a href="http://book.mixu.net/node/">http://book.mixu.net/node/</a>
-              </li>
-              <li>
                 <a href="https://risingstack.com/resources/node-hero">https://risingstack.com/resources/node-hero</a>
               </li>
             </ul>
@@ -1879,21 +1937,17 @@
         <section>
 
           <section>
-            <h2>11. Exercice final</h2>
-            <p>Créer un mini-site pour une agence de voyage.</p>
+            <h2>11. TP final</h2>
+            <p>Vous développez la première étape d'un mini-site plaquette pour une agence de voyage.</p>
             <p>Vous devez respecter le cahier des charges suivant.</p>
           </section>
 
           <section>
               <h3>Contenus</h3>
               <ul>
-                <li>Header : logo + menu top bar : image de background</li>
-                <li>Footer : 3 colonnes (logo + description de la société, dernières news, tags)</li>
-              </ul>
-              <ul>
-                <li>Page "Home" : sections "Top destinations", "Special Offers"</li>
+                <li>Page "Home" : 1 titre, 1 description, 1 section "Top destinations" où vous affichez les 3 destinations qui ont le plus de vues.</li>
                 <li>Page "About" : 1 titre et 1 description</li>
-                <li>Page "Destinations" : 4 destinations (1 destination = prix, lieu, photo)</li>
+                <li>Page "Destinations" : 1 titre, 1 description et une liste de résumé des destinations (1 destination = prix, lieu, photo)</li>
                 <li>Page "Contact" : 1 formulaire de contact (nom, email, message)</li>
               </ul>
           </section>
@@ -1914,7 +1968,8 @@
               <li>Data source = fichier .json</li>
               <li>Ecriture du log est déclenchée par un événement custom</li>
               <li>Le mode "Demo" doit être activé au lancement via un paramètre</li>
-              <li>Pas de template pour le moment, données brutes.</li>
+              <li>Pas de template, vous affichez les données brutes</li>
+              <li>Le formulaire est envoyé via une requête HTTP déclenchée par un module JS côté client.</li>
             </ul>
           </section>
           

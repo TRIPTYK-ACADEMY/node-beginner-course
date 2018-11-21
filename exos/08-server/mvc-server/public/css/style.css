@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  padding: 0;
+  margin: 0 auto;
+  font-family : "Montserrat", sans-serif;
+  color: #fefefe;
+}
+
+.clearfix {
+  height: 1px;
+  clear: both;
+  width: 100%;
+  display: block;
+  float: none;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1707/c387c7e8050c0491b298c2c0d370fbfd/photo-1499678329028-101435549a4e") no-repeat;
+  z-index: 9;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.wrapper {
+  width : 80%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 11;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 50px;
+}
+
+h1 span.color {
+  color: #E71D36;
+}
+
+h1 span.small {
+  font-size: 40px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+nav {
+  background: #E71D36;
+  width: 100%;
+  padding: 0;
+}
+
+nav > ul {
+  background: #E71D36;
+  text-align: right;
+  margin-right: 20px;
+}
+
+nav > ul li {
+  background: #E71D36;
+  list-style-type: none;
+  transition: all 0.3s ease-in-out; 
+  padding: 20px 20px;
+  display: inline-block;
+}
+
+nav > ul li:hover {
+  background: #444;
+  cursor: pointer;
+}
+
+nav > ul li a {
+  color: #fefefe;
+  border: none;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.destinations {
+  width: 30%;
+  float: left;
+  margin: 5px;
+}
+.destinations .price {
+  position: relative;
+  z-index:1;
+  background: #E71D36;
+  padding: 5px 5px 5px 15px;
+  box-sizing: border-box;
+  margin-top: -60px;
+  width: 30%;
+}
+
+.destinations img {
+  max-width: 100%;
+}
+
+input, textarea {
+  font-family : "Montserrat", sans-serif;
+}
+
+input, textarea {
+  padding: 10px;
+  margin: 10px;
+}
+
+button {
+  padding: 15px 20px;
+  text-transform: uppercase;
+  color: #fefefe;
+  background: #E71D36;
+  border: none;
+  margin-left: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}

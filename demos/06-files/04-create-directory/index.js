@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-if(fs.existsSync('public')) {
-  fs.mkdir('public', (error) => {
+if(!fs.existsSync('./public')) {
+  fs.mkdir('./public', (error) => {
     if(error) throw error;
     console.log('Directory created');
   });

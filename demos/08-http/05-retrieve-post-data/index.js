@@ -8,7 +8,7 @@ const server = Http.createServer( (req, response) => {
 
   if(req.method === 'GET')
   {
-    fs.readFile('./public/templates/index.html', 'UTF-8', (error, output) => {
+    fs.readFile('./views/index.html', 'UTF-8', (error, output) => {
       response.writeHead(200, { 'Content-Type' : 'text/html' });
       response.end(output);
     });
@@ -24,7 +24,7 @@ const server = Http.createServer( (req, response) => {
     });
 
     // Renvoi d'une réponse quand tous les paquets ont été reçus
-    req.on('end', () => {
+    req.on('end', (data) => {
       response.writeHead(200, { 'Content-Type' : 'text/html' });
       response.end(data);
     });

@@ -1,0 +1,17 @@
+{
+  "name": "02-with-treatment",
+  "version": "1.0.0",
+  "description": "Demo JSON response",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo",
+    "http",
+    "server",
+    "json"
+  ],
+  "author": "Steve Lebleu",
+  "license": "MIT"
+}

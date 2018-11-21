@@ -1,70 +1,50 @@
-const fs = require('fs');
-const GarbageCollector = require(`${process.cwd()}/modules/garbage-collector`);
-
-/**
- * Get the text path of a resource
- * 
- * @param {String} path 
- * @returns {String} as path of the directory
- */
-const getDirectoryPath = function(path) {
-  let array = path.split('/');
-  return array.splice(0, array.length -1).join('/');
-};
-
-/**
- * Say if a directory contains files
- * 
- * @param {String} path  
- * @returns {Boolean}
- */
-const hasChildrens = function(path) {
-  return fs.readdirSync(path).length > 0;
-};
+const GarbageCollector = require(`${process.cwd()}/modules/files-garbage-collector`);
 
 /**
  * Remove empty files/directories
  * 
  * @param {String} path 
  */
-const garbageCollector = function(path) {
+garbageCollector = function(path) {
 
-  // Parse current path
+  // Parse current path and store files/directories into array
   let items = fs.readdirSync(path);
 
-  // Retrieve elements of current path
+  // For each item of the current path
   items.forEach( (item) => {
   
-    // Define full path
+    // 1. We define full path
     let current = path + item;
 
-    // Extract stats
+    // 2. We extract stats
     fs.stat(current, function(error, stats) {
 
       if(error) throw error;
 
+      // 2.1 We check if the current path is a directory
       if( stats.isDirectory() ) {
 
-        // If the current directory of the file is empty, we delete it
-        !hasChildrens( current ) ? fs.rmdirSync( current ) : garbageCollector(current + '/');
+        // If the current directory is empty, we delete it, else we recurse on garbageCollector with current path
+        !helper.hasChildrens( current ) ? fs.rmdirSync( current ) : garbageCollector(current + '/');
 
       }
-      else if( stats.isFile() && item !== 'index.js') {
+      // 2.2 If current is not a directory, we check if current is a file and if the file is empty
+      // If empty file, we delete it, and we check if the current directory is empty after the deleting. If yes, we delete also the directory
+      else if( stats.isFile() && stats.size === 0 ) {
         
-        // If empty file, we delete it
-        stats.size === 0 && fs.unlinkSync(current);
+        // Delete file
+        fs.unlinkSync(current);
 
-        let directory = getDirectoryPath(current);
+        // Get Path
+        let directory = helper.getDirectoryPath(current);
 
         // If the parent directory of the file is empty, we delete it
-        if( !hasChildrens( directory ) ) {
+        if( !helper.hasChildrens( directory ) ) {
           fs.rmdirSync( directory );
-        }
-              
+        }     
       }
     });
   });
 }
 
-
-GarbageCollector('./');
+GarbageCollector('../02-remove-files-directories-bk/');

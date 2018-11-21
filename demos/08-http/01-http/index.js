@@ -26,11 +26,11 @@ let request = Http.request(options, (response) => {
 
   response.setEncoding('UTF-8');
   response.on('data', (stream) => {
-    console.log(stream);
+    //console.log(stream);
     output += stream;
   });
   response.on('end', () => {
-    console.log(output);
+    //console.log(output);
   });
 });
 

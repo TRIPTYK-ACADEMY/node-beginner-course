@@ -1,7 +1,8 @@
-// Simple output
-process.stdout.write('Hello World');
+// Output simple
+process.stdout.write('Hello World\n');
 
-// Output branched on event listened
+// Ecoute sur l'événement data
 process.stdin.on('data', function(data) {
-  process.stdout.write('Data received');
+  process.stdout.write('Data received\n');
+  process.stdout.write(data);
 });

@@ -1,2 +1,2 @@
-let myString = 'My String';
-console.log(myString); // My String
+let myString = 'I\'m a String';
+console.log(myString); // I'm a String
