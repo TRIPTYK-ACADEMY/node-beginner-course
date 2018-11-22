@@ -94,36 +94,46 @@ This repository contains training files about Node.js for beginners.
 
   #### 8.6 Récupérer les données en POST
 
-### 9. Outils intéressants
+### 9. Structurer son application avec le pattern MVC
 
-  #### 9.1 nodemon
+#### 9.1 Définition du pattern MVC
 
-  #### 9.2 NVM
+#### 9.2 Model
 
-  #### 9.3 PM2 
+#### 9.3 View
 
-  #### 9.4 Module supervisor
+#### 9.4 Controller
 
-  #### 9.5 Module node-inspector
+### 10. Outils intéressants
 
-  #### 9.6 Extensions VS Code
+  #### 10.1 nodemon
 
-  ##### 9.6.1 Javascript ES6 code snippets
+  #### 10.2 NVM
 
-  ##### 9.6.2 Path intelliSense
+  #### 10.3 PM2 
 
-  ##### 9.6.3 DotENV
+  #### 10.4 Module supervisor
 
-  ##### 9.6.4 jsHint
+  #### 10.5 Module node-inspector
 
-  ##### 9.6.5 ESLint
+  #### 10.6 Extensions VS Code
 
-  ##### 9.6.6 TODO Highlight
+  ##### 10.6.1 Javascript ES6 code snippets
 
-  ##### 9.6.7 Git history
+  ##### 10.6.2 Path intelliSense
 
-  ##### 9.6.8 Auto Rename Tag
+  ##### 10.6.3 DotENV
 
-### 10. Ressources 
+  ##### 10.6.4 jsHint
 
-### 11. Exercice final
+  ##### 10.6.5 ESLint
+
+  ##### 10.6.6 TODO Highlight
+
+  ##### 10.6.7 Git history
+
+  ##### 10.6.8 Auto Rename Tag
+
+### 11. Ressources 
+
+### 12. TP final

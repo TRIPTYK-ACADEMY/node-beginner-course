@@ -1,0 +1,41 @@
+<script>
+
+  /**
+   * 
+   **/ 
+  const myFunctionWichReverseAndReplaceAString = (string, callback) => {
+    let inversed = string.split('').reverse().join('').replace(/o/g, 0).replace(/i/g, 1);
+    callback(inversed);
+  };
+
+  myFunctionWichReverseAndReplaceAString('fdsfdsfds fhdsfhiuo ii o iufsfdsfbfndsfjkdsfhdjsfhjdshfsdfsfds', (value) => {
+    alert(value);
+  });
+
+  myFunctionWichReverseAndReplaceAString('fdsfdsfds fhdsfhiuo ii o iufsfdsfbfndsfjkdsfhdjsfhjdshfsdfsfds', (value) => {
+    console.log(value);
+  });
+
+  /**
+   * 
+   **/
+  const myFunctionWithABeautifulPromise = (int1, int2) => {
+
+    return new Promise( ( resolve, reject ) => {
+      if(int1 && int2 && !isNaN(parseInt(int1)) && !isNaN(parseInt(int2)))
+      {
+        resolve(int1 * int2);
+      }
+      else 
+      {
+        console.log('reject')
+        reject(null);
+      }
+    });
+  };
+
+  myFunctionWithABeautifulPromise(12, null)
+    .catch( (error) => { console.log(error); } )
+    .then( (result) => { alert(result); } );
+
+</script>

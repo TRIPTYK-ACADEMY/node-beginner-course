@@ -1,0 +1,28 @@
+1. Définir une fonction qui prend 2 paramètres :
+
+- Une string de 512 caractères
+- Une fonction de callback
+
+Cette fonction ne doit rien retourner. 
+Elle doit inverser l'odre des caractères de la string passée en paramètre et remplacer tous les caractères "o" par 0, et "i" par 1.
+
+Dans un premier appel, la fonction de callback doit afficher la string dans une alert()
+Dans un second appel, la fonction de callback doit afficher la string dans un console.log()
+
+2. Définir une fonction qui prend 2 paramètres :
+
+- Un entier
+- Un autre entier 
+
+La fonction doit retourner une promesse.  Cette promesse doit être résolue si les deux paramètres sont bien deux entiers. Dans ce cas, c'est le produit de ces deux entiers 
+qui est passé en paramètre de la résolution. Si un des deux paramètres n'est pas un entier, la promesse doit être rejetée avec 
+la valeur null en paramètre. 
+
+/!\ Lors de l'appel à cette fonction, vous dévez gérer le déclenchement d'une éventuelle exception.
+
+
+
+
+
+
+

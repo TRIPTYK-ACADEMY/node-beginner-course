@@ -15,6 +15,7 @@ console.log('--- END Directory read synchronously');
 console.log('--- START Asynchronous native mode');
 
 fs.readdir('./', (error, files) => {
+  console.log('Files from 2nd call')
   console.log(files);
 });
 
@@ -24,12 +25,12 @@ console.log('--- END Directory read asynchronously');
 
 async function readDirectory() {
 
-  console.log('--- START Asynchronous native mode');
+  console.log('--- START Asynchronous native mode with await without promise');
 
-  await fs.readdir('./', (error, files) => {
-    console.log(files);
-  });
-  
+  let files = await fs.readdir('./');
+  console.log('Files from 3nd call')
+  console.log(files);
+
   console.log('--- END Directory read asynchronously');
 }
 
@@ -39,10 +40,11 @@ readDirectory();
 
 async function readDirectory2() {
 
-  console.log('--- START Asynchronous native mode');
+  console.log('--- START Asynchronous native mode with await and promise');
 
-  let test = await Reader('./');
-  console.log(test);
+  let list = await Reader('./');
+  console.log('Files from 4th call')
+  console.log(list);
   console.log('--- END Directory read asynchronously');
 }
 
