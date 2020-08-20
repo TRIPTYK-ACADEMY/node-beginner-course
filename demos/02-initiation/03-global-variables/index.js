@@ -1,10 +1,11 @@
 console.log(global);
 
 global.myVariable = 'Toto';
-global.myFunction = function(name) { 
+global.myFunction = (name) => { 
   if(!name) return false; 
   console.log(`Hello ${name}`); 
 };
 
 console.log(global.myVariable);
-global.myFunction('Marcel');
+console.log(global);
+global.myFunction('Triptyk');

@@ -5,4 +5,5 @@ process.stdout.write('Hello World\n');
 process.stdin.on('data', function(data) {
   process.stdout.write('Data received\n');
   process.stdout.write(data);
+  process.exit();
 });

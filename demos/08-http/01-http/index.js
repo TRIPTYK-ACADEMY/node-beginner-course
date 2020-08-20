@@ -1,17 +1,9 @@
 const Http = require('http');
 
-/*
-const options = {
-  hostname : 'www.technocite.be',
-  path: '/index.php/fr/component/detailsform/?form=1192',
-  port : 80,
-  method: 'GET'
-};
-*/
 
 const options = {
   hostname : 'www.triptyk.eu',
-  path: '/fr/realisations',
+  path: '/projects',
   port : 80,
   method: 'GET'
 };
@@ -26,11 +18,11 @@ let request = Http.request(options, (response) => {
 
   response.setEncoding('UTF-8');
   response.on('data', (stream) => {
-    //console.log(stream);
+    console.log(stream);
     output += stream;
   });
   response.on('end', () => {
-    //console.log(output);
+    console.log(output);
   });
 });
 

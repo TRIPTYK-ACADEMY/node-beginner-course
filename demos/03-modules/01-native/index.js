@@ -1,6 +1,6 @@
 const util = require('util');
 
-async function fn() {
+const fn = async () => {
   return 'hello world';
 }
 const callbackFunction = util.callbackify(fn);

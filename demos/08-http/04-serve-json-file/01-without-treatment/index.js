@@ -15,7 +15,7 @@ const server = Http.createServer( (req, response) => {
   else if(req.url === '/is-active')
   {
     let filter = data.filter( (item) => {
-      return filter.isActive === true;
+      return item.isActive === true;
     });
     response.writeHead(200, { 'Content-Type' : 'text/json' });
     response.end(JSON.stringify(filter));

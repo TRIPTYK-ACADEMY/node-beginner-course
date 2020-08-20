@@ -208,7 +208,7 @@ const display = async () => {
         "name": "Floyd York",
         "gender": "male",
         "company": "GENMEX",
-        "email": "floydyork@genmex.com",
+        // "email": "floydyork@genmex.com",
         "phone": "+1 (827) 554-3567",
         "address": "369 Linwood Street, Saticoy, Alaska, 394",
         "about": "Proident eu enim est dolore voluptate est. Exercitation tempor ea laboris occaecat aute qui do incididunt nisi magna non laborum adipisicing. Incididunt minim proident adipisicing consequat occaecat nulla fugiat et tempor est. Commodo id enim commodo commodo culpa aliquip ipsum do laborum anim.\r\n",
@@ -249,12 +249,13 @@ const display = async () => {
 
     if(!contact.email)
     {
-      ContactEventEmitter.emit('error', `\r\r ${contact.name} as not email address`);
+      ContactEventEmitter.emit('error', `\n${contact.name} as not email address \n`);
+    } else {
+      process.stdout.write(`
+        ${contact.name} - ${contact.isActive ? 'Is active' : 'Is not active'} - ${Util.format('%i years' , contact.age)} - ${contact.email} - ${isWellFormatedEmail} \r`
+      );
     }
 
-    process.stdout.write(`
-      ${contact.name} - ${contact.isActive ? 'Is active' : 'Is not active'} - ${Util.format('%i years' , contact.age)} - ${contact.email} - ${isWellFormatedEmail} \r`
-    );
 
   });
 

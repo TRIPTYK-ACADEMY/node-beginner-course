@@ -1,18 +1,18 @@
 const questions = [
-  'What\'s your name ? \n', 
-  'What\'s your favorite animal ? \n',
-  'What\'s your favorite color ? \n'
-  ];
+  "What's your name ? \n", 
+  "What's your favorite animal ? \n",
+  "What's your favorite color ? \n"
+];
 
 const responses = [];
 
 let cursor = 0;
 
-const ask = function() {
+const ask = () => {
   process.stdout.write(questions[cursor]);
 };
 
-const resume = function() {
+const resume = () => {
   let loopCycle = questions.length;
   let i = 0;
   process.stdout.write('------------------------- \n');
@@ -25,7 +25,7 @@ const resume = function() {
   process.exit();
 };
 
-process.stdin.on('data', function(data) {
+process.stdin.on('data', data => {
   responses.push(data); 
   cursor++;
   cursor < ( questions.length ) ? ask() : resume();

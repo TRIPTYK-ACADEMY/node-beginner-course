@@ -1,74 +1,37 @@
-const Nodemailer = require('nodemailer');
-const EventHandler = require(`${process.cwd()}/helpers/event-handler`);
-const ViewBuilder = require(`${process.cwd()}/helpers/view-builder`);
+const fs = require('fs');
+const PageHandler = require(`${process.cwd()}/helpers/page-handler`);
 
 module.exports = (req,res) => {
 
   if(req.method === 'GET')
   {
-    ViewBuilder(req, res, 200);
+    PageHandler(req, res, '');
+    
   }
   else if(req.method === 'POST')
   {
     let data = '';
 
     req.on('data', (chunk) => {
-      data += chunk;
+      data += decodeURIComponent(chunk.toString());
     });
 
-    req.on('end', async () => {
+    req.on('end', () => {
 
       if(!process.argv[2] || process.argv[2] !== '--demo')
       {
         let values = []
-      
-        await data.split('&').forEach( (item) => {
+        data.split('&').forEach( (item) => {
           values.push(item.split('='));
         });
+        let message = `Le nom du destinataire est ${values[0][1]} et il a envoyé un mail avec ${values[1][1]}.\n- Voici son message:\n${values[2][1].split('+').join(' ')}\n`
+        fs.appendFileSync(`${process.cwd()}/private/email.txt`, message);
 
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        Nodemailer.createTestAccount((err, account) => {
-          
-          // create reusable transporter object using the default SMTP transport
-          let transporter = Nodemailer.createTransport({
-              host: 'smtp.ethereal.email',
-              port: 587,
-              secure: false, // true for 465, false for other ports
-              auth: {
-                  user: account.user, // generated ethereal user
-                  pass: account.pass // generated ethereal password
-              }
-          });
-
-          // setup email data with unicode symbols
-          let mailOptions = {
-              from: '"' + decodeURIComponent(values[0][1]) + ' 👻" <' + decodeURIComponent(values[1][1]) + '>', // sender address
-              to: 'steve.lebleu1979@gmail.com', // list of receivers
-              subject: 'Contact request', // Subject line
-              text: values[2][1], // plain text body
-              html: values[2][1] // html body
-          };
-
-          // send mail with defined transport object
-          transporter.sendMail(mailOptions, (error, info) => {
-              if (error) 
-              {
-                  return console.log(error);
-              }
-              else 
-              {
-                EventHandler.emit('log', `Mail sent to ${decodeURIComponent(values[1][1])} at ${new Date()}\n`);
-                ViewBuilder(req, res, 200);
-              }
-              console.log('Message sent: %s', info.messageId);
-              console.log('Preview URL: %s', Nodemailer.getTestMessageUrl(info));
-          });
-        });
+        PageHandler(req, res, 'Le message a bien été envoyé');
       }
       else 
       {
-        ViewBuilder(req, res, 200);
+        PageHandler(req, res, "Le message n'a pas été envoyé car nous sommes en démo");
       }
     });
   }

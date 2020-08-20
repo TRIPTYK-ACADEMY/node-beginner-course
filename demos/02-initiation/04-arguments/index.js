@@ -2,7 +2,7 @@
 // process.argv contient deux entrées par défaut :
 //  - path de l'exécutable node
 //  - path du script courant
-function collectName() {
+const collectName = () => {
   if(typeof(process.argv[2]) === 'undefined') 
     return 'Pas de nom trouvé';
   else 

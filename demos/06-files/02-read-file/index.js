@@ -17,3 +17,21 @@ fs.readFile('./public/contacts-triptyk.txt', (error, file) => {
 });
 
 console.log('Read');
+
+console.log("----------------");
+
+fs.readdir('./public', (error, files) => {
+  files.forEach( filename => {
+    let stat = fs.statSync(filename);
+    console.log(stat);
+  })
+});
+
+fs.readdir('./public', (error, files) => {
+  files.forEach( filename => {
+    fs.readFile(filename, 'UTF-8', (error, content) => {
+      console.log(content);
+    })
+  })
+});
+

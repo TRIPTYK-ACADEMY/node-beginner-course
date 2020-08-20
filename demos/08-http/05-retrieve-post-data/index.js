@@ -19,7 +19,7 @@ const server = Http.createServer( (req, response) => {
 
     // Récupération des paquets de la requête
     req.on('data', (chunk) => {
-      console.log(chunk);
+      console.log(chunk.toString().trim());
       data += chunk;
     });
 

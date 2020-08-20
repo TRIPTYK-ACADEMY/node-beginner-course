@@ -8,25 +8,25 @@ module.exports = () => {
     'What\'s your favorite color ? \n'
   ];
 
-  const init = function() {
+  const init = () => {
     listen();
     ask();
   };
 
-  const ask = function() {
+  const ask = () => {
     process.stdout.write(questions[cursor]);
   };
   
-  const listen = function() {
+  const listen = () => {
     process.stdout.write('We listen the terminal\n');
-    process.stdin.on('data', function(data) {
+    process.stdin.on('data', data => {
       responses.push(data); 
       cursor++;
       cursor < ( questions.length ) ? ask() : resume();
     });
   };
 
-  const resume = function() {
+  const resume = () => {
     let loopCycle = questions.length;
     let i = 0;
     process.stdout.write('------------------------- \n');
@@ -39,8 +39,6 @@ module.exports = () => {
     process.exit();
   };
 
-  let self = this;
-  self.init = init;
-
-  return self;
+  this.init = init;
+  return this;
 };

@@ -13,6 +13,7 @@ module.exports = async ( req , res ) => {
           contacts.forEach( ( contact ) => {
             output += '<li>' + contact.name + '</li>';
           });
+          //Need replace the function
           let template = result.replace(/{{LIST}}/g, output);
           res.writeHead(200, { 'Content-type' : 'text/html' })
           res.end(template);

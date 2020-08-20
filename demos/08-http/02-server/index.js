@@ -1,11 +1,6 @@
 const Http = require('http');
 
 const server = Http.createServer( (request, response) => {
-  response.writeHead(200, { 'Content-Type' : 'text/plain' });
-  response.end('Node server created');
-});
-
-const server = Http.createServer( (request, response) => {
   let output = '';
   output += `
     <html>
@@ -28,4 +23,3 @@ const server = Http.createServer( (request, response) => {
 server.listen(8001);
 
 console.log('Node server listen port 8001 : http://localhost:8001');
-

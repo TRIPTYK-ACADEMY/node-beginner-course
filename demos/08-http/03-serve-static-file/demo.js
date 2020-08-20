@@ -42,7 +42,7 @@ const server = Http.createServer( (req, res) => {
   else if (req.url.match(/.html$/)) {
     Fs.readFile(`${process.cwd()}/views/404.html`, 'UTF-8', (err, output) => {
       if(err) console.log(err);
-      res.writeHead(200, { 'Content-type' : 'text/html'});
+      res.writeHead(404, { 'Content-type' : 'text/html'});
       res.end(output);
     });
   }

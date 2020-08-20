@@ -27,7 +27,7 @@ async function readDirectory() {
 
   console.log('--- START Asynchronous native mode with await without promise');
 
-  let files = await fs.readdir('./');
+  let files = await fs.readdirSync('./');
   console.log('Files from 3nd call')
   console.log(files);
 

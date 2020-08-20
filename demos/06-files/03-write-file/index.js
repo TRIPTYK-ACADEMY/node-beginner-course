@@ -7,6 +7,6 @@ names.forEach( (name) => {
   output += `${name}\n`;
 });
 
-fs.writeFile('./public/contacts.txt', output, (error, file) => {
+fs.writeFile('./contacts.txt', output, (error, file) => {
   console.log('File created');
 });
