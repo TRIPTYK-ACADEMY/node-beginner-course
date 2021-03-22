@@ -1,14 +1,23 @@
 /**
- * Simulez une application de messagerie 
+ * Simulez un module de téléchargement, il doit implémenter les évènements utilisés ci-dessous:
+ * - Le début du téléchargement, qui doit émettre le nom du fichier à téléchargé
+ * - Le pourcentage du téléchargement, qui augmente de 10 pourcents toutes les secondes doit émettre le pouventage actuel
+ * - La fin du téléchargement, qui émet le contenu du fichier (une chaine de caractères au pif actuellement)
+ *
+ * Si un téléchargement est en cours, on ne peut relancer la fonction "download"
  */
+const downloader = require("./download");
 
-const messages = [];
-const channel = new events.EventEmitter();
-
-channel.on("message",(message) => {
-    console.log("Un message a été envoyé : " + message);
+downloader.on("progress", (progress) => {
+  console.log("⬇ Downloading : ", progress, "%");
 });
 
-process.stdin.on("data",(message) => {
-    
+downloader.once("begin_download", (file) => {
+  console.log("✔ Lancement du téléchargement de : ", file);
 });
+
+downloader.once("end_download", (content) => {
+  console.log("📝 Contenu du fichier: ", content);
+});
+
+downloader.download("test.txt");
