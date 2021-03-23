@@ -1,24 +1,26 @@
 const fs = require("fs");
 
-const stream = fs.createWriteStream("file.txt", "UTF-8");
+const stream = fs.createReadStream("file.txt", "UTF-8");
 const writestream = fs.createWriteStream("file-copy.txt", "UTF-8");
-stream.emit("");
 
 /**
- *
+ * On écrit dans le flux
  */
-stream.on("data", (chunk) => {
-  console.log(`Je lis actuellement : ${chunk.length} octets`);
-});
+writestream.write("lol\n");
 
 /**
- * Si une erreur se produit
+ * Redirige le "flux" de stream de lecture vers le stream d'écriture avec pipe(). Dans ce cas-ci ça fera une copie du fichier
  */
-stream.on("error", console.error);
+stream.pipe(writestream);
 
 /**
- * Le stream a fini de lire
+ * Le process.stdout (qui est le flux de sortie du terminal) est aussi un stream "writable", du coup vous pouvez écrire dedans, c'est ce que fait la fonction console.log
  */
-stream.on("end", () => {
-  console.log("End stream reading");
-});
+process.stdout.write("Coucou, je suis une console\n");
+
+/**
+ * Process.stdin est également un flux en lecture, vous pouvez donc pipe son contenu dans un fichier.
+ */
+const terminalLogger = fs.createWriteStream("logger.log", "UTF-8");
+
+process.stdin.pipe(terminalLogger);
