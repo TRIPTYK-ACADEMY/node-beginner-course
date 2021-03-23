@@ -11,7 +11,11 @@ const main = async () => {
   console.log("📂 Dossier renommé!");
 
   await sleep(2000);
-  await fs.rmdir("dossier-rename");
+  await fs.rename("dossier", "../dossier-rename");
+  console.log("📂 Dossier déplacé!");
+
+  await sleep(2000);
+  await fs.rmdir("../dossier-rename");
   console.log("📂 Dossier supprimé !");
 };
 
