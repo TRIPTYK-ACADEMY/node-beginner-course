@@ -1,12 +1,13 @@
-const http = require("https");
+const https = require("https");
 
 const options = {
   hostname: "www.triptyk.eu",
+  path: "/", // à la racine du site
   port: 443,
   method: "GET", //GET, POST, PATCH/UPDATE, DELETE
 };
 
-let request = http.request(options, (response) => {
+let request = https.request(options, (response) => {
   let output = "";
 
   console.log("Connexion");

@@ -23,7 +23,7 @@ const readRequestData = (req) => {
 
 const server = Http.createServer(async (req, response) => {
   console.log(`${req.method} : request for ${req.url}`);
-  const { searchParams: query, pathname: path, hash } = new URL(
+  const { searchParams: query, pathname: path } = new URL(
     req.url,
     "http://localhost:8001"
   );
