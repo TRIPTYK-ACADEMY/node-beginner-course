@@ -1,7 +1,7 @@
 /**
  * Un callback est une fonction exécutée lorsque la fonction appellée a fini de s'éxécuter en arrière plan
  * C'est la plus ancienne méthode et la plus chaotique qui était éxécutée pour attendre le retour d'une tâche asynchrone
- * Généralement, les arguments de la fonction de callback étaient sous cette forme : (erreur,résultat) => {...}
+ * Généralement, les arguments de la fonction de callback sont sous cette forme : (erreur,résultat) => {...}
  */
 
 function myCallBackSumFunction(sum1, sum2, callback) {
