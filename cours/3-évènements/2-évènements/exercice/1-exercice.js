@@ -1,7 +1,7 @@
 /**
  * Simulez un module de téléchargement, il doit implémenter les évènements utilisés ci-dessous:
- * - Le début du téléchargement, qui doit émettre le nom du fichier à téléchargé
- * - Le pourcentage du téléchargement, qui augmente de 10 pourcents toutes les secondes doit émettre le pouventage actuel
+ * - Le début du téléchargement, qui doit émettre le nom du fichier à télécharger
+ * - Le pourcentage du téléchargement, qui augmente de 10 pourcents toutes les secondes et doit émettre le pourcentage actuel
  * - La fin du téléchargement, qui émet le contenu du fichier (une chaine de caractères au pif actuellement)
  *
  * Si un téléchargement est en cours, on ne peut relancer la fonction "download"

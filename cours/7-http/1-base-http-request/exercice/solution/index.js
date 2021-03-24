@@ -1,4 +1,4 @@
-const http = require("https");
+const https = require("https");
 
 const options = {
   hostname: "triptyk-api-dev.triptyk.eu",
@@ -7,7 +7,7 @@ const options = {
   method: "GET", //GET, POST, PATCH/UPDATE, DELETE
 };
 
-let request = http.request(options, (response) => {
+let request = https.request(options, (response) => {
   let output = "";
 
   response.setEncoding("UTF-8");
