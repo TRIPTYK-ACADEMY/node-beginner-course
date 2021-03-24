@@ -18,11 +18,20 @@ const server = Http.createServer((request, response) => {
       </body>
     </html>
   `;
-
+  /**
+   * On dit que la réponse est de type HTML et que le status de réponse HTTP est 200
+   */
   response.writeHead(200, { "Content-Type": "text/html" });
+
+  /**
+   * On ferme le flux et on envoie les données
+   */
   response.end(output);
 });
 
+/**
+ * On écoute sur le port local 8001
+ */
 server.listen(8001, () => {
   console.log(
     "Le serveur node écoute sur le port 8001 : http://localhost:8001"
