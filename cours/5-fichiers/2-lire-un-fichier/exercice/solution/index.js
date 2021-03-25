@@ -1,10 +1,10 @@
 const fs = require("fs/promises");
 
-const countEmojis = async (file) => {
+const countChar = async (file) => {
   const content = await fs.readFile(file, "utf8");
 
   const result = content.split("").reduce((p, c) => {
-    if (c.match(/[a-z]/i)) {
+    if (c !== "") {
       return p + 1;
     } else {
       return p;
@@ -14,4 +14,4 @@ const countEmojis = async (file) => {
   return result;
 };
 
-countEmojis("./mon-fichier.txt").then(console.log);
+countChar("./mon-fichier.txt").then(console.log);
