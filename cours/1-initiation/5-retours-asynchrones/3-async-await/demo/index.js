@@ -15,7 +15,7 @@ function sleep(ms) {
  * Le mot clé await est utilisable à l'intérieur d'une fonction avec le mot clé async, elle permet d'attendre le retour de la promesse.
  * Une erreur est émise grâce au mot-clé 'throw'
  */
-async function myPromiseSumFunction(sum1, sum2, callback) {
+function myPromiseSumFunction(sum1, sum2, callback) {
   await sleep(2000);
   if (sum1 + sum2 < 0) {
     throw "Erreur, le résultat ne peut être inférieur à 0";
