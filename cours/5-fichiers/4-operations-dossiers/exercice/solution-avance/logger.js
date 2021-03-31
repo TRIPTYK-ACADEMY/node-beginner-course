@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 
 const getDirectoryStructureForDate = (date) => {
-  return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+  return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`;
 };
 
 const directoryExistsForDate = async (date) => {
@@ -35,7 +35,7 @@ exports.log = async (type, message) => {
   const fileName = `${date.getHours()}.log`;
   await fs.appendFile(
     `${structure}/${fileName}`,
-    `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} [${type}] ${message}\n`
+    `[${type}] ${message}\n`
   );
 };
 

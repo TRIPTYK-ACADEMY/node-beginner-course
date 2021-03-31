@@ -12,13 +12,19 @@ const server = Http.createServer((request, response) => {
    * On extrait l'extension du fichier dans l'url de requête
    */
   let extension = request.url.split(".").pop();
-
+  
   if (request.url === "/") {
     type = "text/html";
     output = createReadStream("index.html");
   } else if (extension === "jpg") {
     output = createReadStream(`.${request.url}`);
     type = "image/jpg";
+  } else if (extension === "css") {
+    output = createReadStream(`.${request.url}`);
+    type = "text/css";
+  } else {
+    response.writeHead(404);
+    return response.end();
   }
 
   response.writeHead(200, { "Content-Type": type });
