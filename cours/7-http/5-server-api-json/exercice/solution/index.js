@@ -35,7 +35,6 @@ const readUsers = () => {
   return fsPromise
     .readFile("./users.json", "utf8")
     .then((e) => JSON.parse(e))
-    .then((json) => json.users);
 };
 
 /**
@@ -65,14 +64,20 @@ const server = http.createServer(async (request, response) => {
         response.end();
       } else if (request.method === "POST") {
         const usersJSON = await readUsers();
-        const body = await readRequestData(request);
+        let body = await readRequestData(request);
+        body = JSON.parse(body)
+        body.id = usersJSON.length + 1;
 
-        usersJSON.push(JSON.parse(body));
+
+        usersJSON.push(body);
 
         await fsPromise.writeFile(
           "./users.json",
           JSON.stringify(usersJSON, null, 2)
         );
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(body));
+        response.end();
       } else {
         return notFound(response);
       }
