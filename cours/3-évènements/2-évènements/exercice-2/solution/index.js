@@ -1,15 +1,25 @@
-const downloader = require("./download");
 
-downloader.on("progress", (progress) => {
-  console.log("⬇ Downloading : ", progress, "%");
-});
+const EventEmitter = require("events");
 
-downloader.once("begin_download", (file) => {
-  console.log("✔ Lancement du téléchargement de : ", file);
-});
+class Logger extends EventEmitter {
+  log(message) {
+    this.emit("log", message)
+  }
+}
 
-downloader.once("end_download", (content) => {
-  console.log("📝 Contenu du fichier: ", content);
-});
+const logger = new Logger();
 
-downloader.download("test.txt");
+logger.on("log", (message) => {
+  console.log(message);
+})
+
+class User {
+  constructor(name) {
+    logger.log(`User ${name} created`);
+  }
+}
+
+const sebastien = new User("Sébastien");
+const amaury = new User("Amaury");
+
+logger.log("Fin de la création");

@@ -1,5 +1,5 @@
-import { stylePhrase } from "./module.mjs";
+// Bien préciser l'extension du fichier
+import { generate } from "./emojiGenerate.mjs";
 
-const stylised = stylePhrase("test");
-
-console.log(stylised);
+generate(6)
+generate();
